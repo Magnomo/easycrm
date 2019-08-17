@@ -38,6 +38,6 @@ class UpdateUsuarioRequest extends FormRequest
             'max' => "O campo :attribute deve conter no máximo :max digitos",
             'min'=> 'O campo :attribute deve conter no mínimo :min digitos',
             'confirmed'=> 'é necessário confirmar a senha' 
-        ]
+        ];
     }
 }
