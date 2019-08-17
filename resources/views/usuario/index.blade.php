@@ -9,12 +9,15 @@
                 <td>id</td>
                 <td>Nome</td>
                 <td>Email</td>
+                <td colspan="2">Ações</td>
             </tr>
             @foreach($usuarios as $usuario)
             <tr>
                 <td>{{$usuario->id}}</td>
                 <td>{{$usuario->nome}}</td>
                 <td>{{$usuario->email}}</td>
+                <td><a href="{{url('usuario/'.$usuario->id.'/edit')}}">Editar</a></td>
+                <td><a href="#">Deletar</a></td>
             </tr>
             @endforeach
         </table>

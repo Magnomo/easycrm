@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateUsuarioRequest;
 use App\Usuario;
+use DB;
 
 class UsuarioController extends Controller
 {
@@ -35,9 +37,10 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpdateUsuarioRequest $request)
     {
         //
+
     }
 
     /**
@@ -60,6 +63,8 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         //
+        $usuario = Usuario::findOrFail($id);
+        return view('auth.register', compact('usuario'));
     }
 
     /**
@@ -69,9 +74,20 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUsuarioRequest $request, $id)
     {
         //
+        DB::beginTransaction();
+        try {
+            $usuario = Usuario::findOrFail($id);
+            $usuario->update($request->all());
+            DB::commit();
+            $usuarios = Usuario::all();
+            return view('usuario.index', compact('usuarios'))->with('message', 'Usuario atualizado com sucesso');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with('message', 'Erro ao tentar atualizar, erro:' . $e->getMessage());
+        }
     }
 
     /**
