@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNivelsTable extends Migration
+class TipoPagamento extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateNivelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('nivel', function (Blueprint $table) {
+        Schema::create('tipo_pagamento', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome', 45);
+            $table->enum('nome', ['Crédito','Débito','Dinheiro','Outro']);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +28,7 @@ class CreateNivelsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('nivel');
+        //
+        Schema::dropIfExists('tipo_pagamento');
     }
 }

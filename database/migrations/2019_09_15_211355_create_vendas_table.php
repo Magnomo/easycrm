@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsuariosTable extends Migration
+class CreateVendasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario', function (Blueprint $table) {
+        Schema::create('venda', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome', 45);
-            $table->date('dt_nascimento')->nullable();
-            $table->integer('nivel_id')->unsigned()->index('fk_nivel_usuario')->nullable();
-            $table->integer('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->date('data_venda');
+            $table->double('total', 7,3);
+            $table->integer('parcelas_restantes');
+            $table->string('status',50);
+            $table->bigInteger('cliente_id');
+            $table->bigInteger('usuario_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +33,6 @@ class CreateUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('venda');
     }
 }

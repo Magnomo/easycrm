@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsuariosTable extends Migration
+class CreatePagamentosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario', function (Blueprint $table) {
+        Schema::create('pagamento', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome', 45);
-            $table->date('dt_nascimento')->nullable();
-            $table->integer('nivel_id')->unsigned()->index('fk_nivel_usuario')->nullable();
-            $table->integer('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('venda_id')->unsigned()->index('fk_venda');
+            $table->integer('tipo_pagamento')->unsigned()->index('fk_pagamento');
+            $table->double('valor',7,2);
+            $table->date('data_pagamento');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +31,6 @@ class CreateUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('pagamento');
     }
 }

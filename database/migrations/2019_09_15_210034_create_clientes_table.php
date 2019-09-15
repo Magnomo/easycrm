@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNivelsTable extends Migration
+class CreateClientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateNivelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('nivel', function (Blueprint $table) {
+        Schema::create('cliente', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome', 45);
+            $table->string('nome',45);
+            $table->date('dt_nascimento')->nullable();
+            $table->enum('sexo',['Masculino','Feminino','Outro']);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +30,6 @@ class CreateNivelsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('nivel');
+        Schema::dropIfExists('cliente');
     }
 }

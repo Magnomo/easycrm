@@ -8,7 +8,7 @@ class Usuario extends Model
 {
     //
     protected $table = 'usuario';
-    protected $fillable= ['nome','email','data_nascimento','senha','nivel_id','user_id'];
+    protected $fillable= ['nome','data_nascimento','nivel_id','user_id'];
 
     public function nivel(){
         return $this->belongsTo('App\Nivel');
