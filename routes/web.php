@@ -21,5 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/teste', 'UsuarioController@index');
     Route::resource('/usuario','UsuarioController');
-    Route::put('/usuario/delete/{id}','UsuarioController@restore');
+    Route::put('/usuario/restore/{id}','UsuarioController@restore');
 });
