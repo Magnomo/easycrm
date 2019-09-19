@@ -23,3 +23,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/usuario','UsuarioController');
     Route::put('/usuario/restore/{id}','UsuarioController@restore');
 });
+

@@ -1,12 +1,14 @@
 <?php
 $moduleInfo = [
     'icon' => 'store',
-    'name' => 'Estoque',
+    'name' => 'Easycrm',
 ];
 $menu = [
-    ['icon' => 'shopping_basket', 'tool' => 'Produto', 'route' => url('/')],
-    ['icon' => 'format_align_justify', 'tool' => 'Categoria', 'route' => url('/')],
-    ['icon' => 'store', 'tool' => 'Estoque', 'route' => url('estoque')],
+    ['icon' => 'shopping_basket', 'tool' => 'Produtos', 'route' => url('/')],
+    ['icon' => 'person', 'tool' => 'Usuários', 'route' => url('/')],
+    ['icon' => 'person', 'tool' => 'Clientes', 'route' => url('estoque')],
+    ['icon' => 'shopping_cart', 'tool' => 'Vendas   ', 'route' => url('estoque')],
+    ['icon' => 'store', 'tool' => 'Estpque', 'route' => url('estoque')],
 ];
 ?>
 <!DOCTYPE html>

@@ -63,8 +63,11 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         //
+        $data= [
+            'url'=> url('usuario/'.$id),
+        ];
         $usuario = Usuario::findOrFail($id);
-        return view('auth.register', compact('usuario'));
+        return view('usuario.form', compact('usuario','data'));
     }
 
     /**
