@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TipoPagamento extends Migration
+class CreateTelefonesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class TipoPagamento extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_pagamento', function (Blueprint $table) {
+        Schema::create('telefone', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('nome', ['Crédito','Débito','Dinheiro','Outro']);
-
+            $table->integer('cod_pais');
+            $table->integer('ddd');
+            $table->string('telefone_numero');
+            $table->integer('tipo_telefone_id')->unsigned()->index('fk_telefone1');
+            $table->timestamps();
             $table->softDeletes();
         });
     }
@@ -28,7 +31,6 @@ class TipoPagamento extends Migration
      */
     public function down()
     {
-        //
-        Schema::dropIfExists('tipo_pagamento');
+        Schema::dropIfExists('telefone');
     }
 }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\UpdateUsuarioRequest;
+use App\Nivel;
+use App\User;
 use App\Usuario;
 use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -17,8 +19,9 @@ class UsuarioController extends Controller
     public function index()
     {
         //
+        $flag=1;
         $usuarios = Usuario::paginate(10);
-        return view('usuario.index', compact('usuarios'));
+        return view('usuario.index', compact('usuarios','flag'));
     }
 
     /**
@@ -28,7 +31,12 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'url' => url('usuario'),
+            'niveis' => Nivel::all(),
+        ];
+        //  dd($usuario);
+        return view('usuario.form', compact('data'));
     }
 
     /**
@@ -37,9 +45,25 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UpdateUsuarioRequest $request)
+    public function store(Request $request)
     {
         //
+        // $usuario  = Usuario::create($request->all());
+        // dd($request->all());
+        if ($request->senha != $request->cSenha) {
+            return back()->with('warning', 'As senhas devem ser iguais');
+        }
+        $user = User::create([
+            'name' => $request->nome,
+            'email' => $request->email,
+            'password' => Hash::make($request->senha),
+        ]);
+        Usuario::create([
+            'nome' => $user->name,
+            'user_id' => $user->id,
+            'nivel_id' => $request->nivel_id,
+        ]);
+        return redirect('/usuario')->with('success', 'Usuário Criado com sucesso');
 
     }
 
@@ -63,11 +87,14 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         //
-        $data= [
-            'url'=> url('usuario/'.$id),
+
+        $data = [
+            'url' => url('usuario/' . $id),
+            'niveis' => Nivel::all(),
         ];
         $usuario = Usuario::findOrFail($id);
-        return view('usuario.form', compact('usuario','data'));
+        //  dd($usuario);
+        return view('usuario.form', compact('usuario', 'data'));
     }
 
     /**
@@ -77,16 +104,21 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUsuarioRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
+        //   dd($request->all());
         DB::beginTransaction();
         try {
             $usuario = Usuario::findOrFail($id);
             $usuario->update($request->all());
+            if ($request->nivel != null) {
+
+                $nivel = Nivel::findOrFail($request->nivel_id);
+                $usuario->nivel()->associate($nivel)->save();
+            }
             DB::commit();
-            $usuarios = Usuario::all();
-            return view('usuario.index', compact('usuarios'))->with('message', 'Usuario atualizado com sucesso');
+            return redirect('usuario')->with('success', 'Usuário Atualizado com sucesso');
         } catch (\Exception $e) {
             DB::rollback();
             return back()->with('message', 'Erro ao tentar atualizar, erro:' . $e->getMessage());
@@ -101,6 +133,24 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
+        $usuario = Usuario::findOrFail($id);
+        $usuario->delete();
+        return redirect('/usuario')->with('success', 'Usuário Removido com sucesso');
         //
+    }
+    public function inativos(){
+        $flag = 0;
+        $usuariosInativos = Usuario::onlyTrashed()->get();
+        return view('usuario.index',compact('flag','usuariosInativos'));
+       
+    }
+    public function restore($id){
+        $usuario = Usuario::onlyTrashed()->findOrFail($id);
+        $usuario->restore();
+        return back()->with('success','Usuário Restaurado com sucesso');
+    }
+    public function buscaEmail(Request $request){
+      $totalEmail = User::where('email', $request->email)->count();
+      return $totalEmail;
     }
 }

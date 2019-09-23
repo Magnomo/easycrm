@@ -16,7 +16,6 @@ class CreateUsuariosTable extends Migration
         Schema::create('usuario', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome', 45);
-            $table->date('dt_nascimento')->nullable();
             $table->integer('nivel_id')->unsigned()->index('fk_nivel_usuario')->nullable();
             $table->integer('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

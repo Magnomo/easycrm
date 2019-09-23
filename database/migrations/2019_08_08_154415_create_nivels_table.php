@@ -15,7 +15,7 @@ class CreateNivelsTable extends Migration
     {
         Schema::create('nivel', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome', 45);
+            $table->enum('nome', ['Administrador','Operador']);
         });
     }
 
