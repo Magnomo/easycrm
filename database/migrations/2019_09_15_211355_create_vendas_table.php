@@ -19,7 +19,7 @@ class CreateVendasTable extends Migration
             $table->double('total', 7,3);
             $table->integer('parcelas_restantes');
             $table->string('status',50);
-            $table->integer('cliente_id')->unsigned()->index('fk_cliente1');
+            $table->integer('cliente_id')->unsigned()->index('fk_cliente1')->nullable();
             $table->integer('usuario_id')->unsigned()->index('fk_usuario1');
             $table->timestamps();
             $table->softDeletes();

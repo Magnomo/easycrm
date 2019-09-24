@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Nivel;
-use App\User;
-use App\Usuario;
+use App\{Usuario,User,Nivel};
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;

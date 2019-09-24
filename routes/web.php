@@ -19,10 +19,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
+    // Rotas de usuário
     Route::get('/usuario/inativos','UsuarioController@inativos');
     Route::get('/usuario/{id}/restore','UsuarioController@restore');
     Route::resource('/usuario','UsuarioController');
-    Route::put('/usuario/restore/{id}','UsuarioController@restore');
+    //Rotas de cliente
+    Route::resource('/cliente','ClienteController');
+    
 });
 Route::post('/buscaEmail','UsuarioController@buscaEmail');
 
