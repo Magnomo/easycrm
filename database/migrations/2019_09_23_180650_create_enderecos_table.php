@@ -22,7 +22,7 @@ class CreateEnderecosTable extends Migration
             $table->string('estado', 2)->nullable();
             $table->string('endereco_numero')->nullable();
             $table->string('complemento')->nullable();
-            $table->integer('cliente_id')->unsigned()->index('fk_cliente2');
+            $table->integer('cliente_id')->unsigned()->index('fk_cliente2')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
