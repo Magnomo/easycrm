@@ -32,12 +32,12 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        
+
         $data = [
             'url' => '/cliente',
             'title' => 'Cadastrar Cliente',
-            'button'=>'Cadastrar',
-            'tipo_telefones' =>DB::table('tipo_telefone')->get()
+            'button' => 'Cadastrar',
+            'tipo_telefones' => DB::table('tipo_telefone')->get()
         ];
         return view('cliente.form', compact('data'));
     }
@@ -63,7 +63,7 @@ class ClienteController extends Controller
                 //  dd($endereco);
             }
 
-            if ($request->tipo_telefone_id != null) {
+            if ($request->tipo_telefone_id != -1) {
                 //    return 1;
                 $telefone = Telefone::create($request->all());
                 $telefone->cliente()->associate($cliente)->save();
@@ -96,12 +96,12 @@ class ClienteController extends Controller
     public function edit($id)
     {
         $cliente = Cliente::findOrFail($id);
-      //  dd($cliente->telefones);
+        //  dd($cliente->telefones);
         $data = [
             'url' => url('cliente/' . $id),
             'title' => 'Editar Cliente',
             'button' => 'Atualizar',
-            'tipo_telefones' =>DB::table('tipo_telefone')->get()
+            'tipo_telefones' => DB::table('tipo_telefone')->get()
         ];
         return view('cliente.form', compact('data', 'cliente'));
     }
