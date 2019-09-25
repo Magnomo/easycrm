@@ -7,14 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
     //
-    protected $table ="cliente";
-    protected $fillable = ['nome','dt_nascimento','sexo'];
+    protected $table = "cliente";
+    protected $fillable = ['nome', 'dt_nascimento', 'email', 'sexo'];
 
 
-    public function vendas(){
+    public function vendas()
+    {
         return $this->hasMany('App\Venda');
     }
-    public function enderecos(){
+    public function enderecos()
+    {
         return $this->hasMany('App\Endereco');
+    }
+    public function telefones(){
+        return $this->belongsTo('App\Telefone');
     }
 }

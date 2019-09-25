@@ -19,6 +19,7 @@ class CreateTelefonesTable extends Migration
             $table->integer('ddd');
             $table->string('telefone_numero');
             $table->integer('tipo_telefone_id')->unsigned()->index('fk_telefone1');
+            $table->integer('cliente_id')->unsigned()->index('fk_cliente2')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

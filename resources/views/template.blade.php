@@ -6,7 +6,7 @@ $moduleInfo = [
 $menu = [
     ['icon' => 'shopping_basket', 'tool' => 'Produtos', 'route' => url('/')],
     ['icon' => 'person', 'tool' => 'Usuários', 'route' => url('/usuario')],
-    ['icon' => 'person', 'tool' => 'Clientes', 'route' => url('estoque')],
+    ['icon' => 'person', 'tool' => 'Clientes', 'route' => url('/cliente')],
     ['icon' => 'shopping_cart', 'tool' => 'Vendas   ', 'route' => url('estoque')],
     ['icon' => 'store', 'tool' => 'Estoque', 'route' => url('estoque')],
 ];

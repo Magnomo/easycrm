@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Cliente;
 
 use App\Endereco;
-use App\Telefone;use DB;
+use App\Telefone;
+use DB;
 use Illuminate\Http\Request;
+use TipoTelefone;
 
 class ClienteController extends Controller
 {
@@ -30,9 +32,12 @@ class ClienteController extends Controller
      */
     public function create()
     {
+        
         $data = [
             'url' => '/cliente',
             'title' => 'Cadastrar Cliente',
+            'button'=>'Cadastrar',
+            'tipo_telefones' =>DB::table('tipo_telefone')->get()
         ];
         return view('cliente.form', compact('data'));
     }
@@ -49,19 +54,25 @@ class ClienteController extends Controller
         //   dd($request->all());
         DB::beginTransaction();
         try {
+            //  dd($request->tipo_telefone_id);
             $cliente = Cliente::create($request->all());
             //dd($cliente);
             if ($request->cep != null) {
                 $endereco = Endereco::create($request->all());
-                $endereco->cliente()->associate($cliente);
-              //  dd($endereco);
+                $endereco->cliente()->associate($cliente)->save();
+                //  dd($endereco);
+            }
+
+            if ($request->tipo_telefone_id != null) {
+                //    return 1;
+                $telefone = Telefone::create($request->all());
+                $telefone->cliente()->associate($cliente)->save();
             }
             DB::commit();
-            return redirect('/cliente')->with('success','Cliente Cadastrado com sucesso');
-
+            return redirect('/cliente')->with('success', 'Cliente Cadastrado com sucesso');
         } catch (Exception $e) {
             DB::rollback();
-            return back()->with('danger', 'Erro inesperado ao tentar inserir. cod:'+$e->getMessage());
+            return back()->with('danger', 'Erro inesperado ao tentar inserir. cod:' + $e->getMessage());
         }
     }
 
@@ -84,7 +95,15 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+      //  dd($cliente->telefones);
+        $data = [
+            'url' => url('cliente/' . $id),
+            'title' => 'Editar Cliente',
+            'button' => 'Atualizar',
+            'tipo_telefones' =>DB::table('tipo_telefone')->get()
+        ];
+        return view('cliente.form', compact('data', 'cliente'));
     }
 
     /**

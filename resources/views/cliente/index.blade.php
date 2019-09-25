@@ -27,7 +27,7 @@
         <tr>
             <td>{{$cliente->id}}</td>
             <td>{{$cliente->nome}}</td>
-            <td>{{$cliente->user->email}}</td>
+            <td>{{$cliente->email}}</td>
             
             <td>
                 <a href="#"><button class="btn btn-primary btn-sm"> <i class="material-icons">list</i></button></a>
