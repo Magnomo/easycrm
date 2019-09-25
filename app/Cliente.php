@@ -20,6 +20,6 @@ class Cliente extends Model
         return $this->hasMany('App\Endereco');
     }
     public function telefones(){
-        return $this->belongsTo('App\Telefone');
+        return $this->hasMany('App\Telefone');
     }
 }

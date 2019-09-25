@@ -50,8 +50,10 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //  dd($request->all());
-        //   dd($request->all());
+        //dd($request->all());
+
+
+        // dd($request->all());
         DB::beginTransaction();
         try {
             //  dd($request->tipo_telefone_id);
@@ -64,8 +66,19 @@ class ClienteController extends Controller
             }
 
             if ($request->tipo_telefone_id != -1) {
+                $cod_pais = preg_replace('/[^a-z0-9\-]/', '', $request->cod_pais);
+                $ddd = preg_replace('/[^a-z0-9\-]/', '', $request->ddd);
+                $numero =  $request->telefone_numero;
+                $numero = str_replace('-', '', $numero);
                 //    return 1;
-                $telefone = Telefone::create($request->all());
+
+                $telefone = Telefone::create([
+                    'ddd' => $ddd,
+                    'cod_pais' => $cod_pais,
+                    'telefone_numero' => $numero,
+                    'tipo_telefone_id' => intval($request->tipo_telefone_id)
+                ]);
+                //dd($telefone);
                 $telefone->cliente()->associate($cliente)->save();
             }
             DB::commit();
@@ -96,7 +109,7 @@ class ClienteController extends Controller
     public function edit($id)
     {
         $cliente = Cliente::findOrFail($id);
-        //  dd($cliente->telefones);
+        // dd($cliente->telefones->last()->tipo_telefone_id);
         $data = [
             'url' => url('cliente/' . $id),
             'title' => 'Editar Cliente',

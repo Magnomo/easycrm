@@ -8,7 +8,7 @@ class Telefone extends Model
 {
     //
     protected $table = 'telefone';
-    protected $fillable = ['ddd', 'cod_pais', 'telefone_numero', 'cliente_id'];
+    protected $fillable = ['ddd', 'cod_pais', 'tipo_telefone_id', 'telefone_numero', 'cliente_id'];
 
 
     public function cliente()

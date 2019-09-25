@@ -95,26 +95,26 @@
             <select class="form-control custom-select tipo_telefone" id="tipo_telefone" name="tipo_telefone_id">
                 <option value="-1">Selecione</option>
                 @foreach($data['tipo_telefones'] as $tipo)
-                <option value="{{$tipo->id}}">{{$tipo->tipo}}</option>
+                <option {{isset($cliente)&&($cliente->telefones!=null)&&($cliente->telefones->last()->tipo_telefone_id==$tipo->id)?'selected':''}} value="{{$tipo->id}}">{{$tipo->tipo}}</option>
                 @endforeach
             </select>
         </div>
         <div class="col-md-6 col-lg-2 col-sm-12 col_cod_pais">
             <label for="cod_pais">Cód do país: </label>
 
-            <input type="text" class="form-control cod_pais" required id="cod_pais" value="{{isset($cliente)&&($cliente->telefones!=null)?$cliente->telefones->last()->cod_pais:''}}" name="cod_pais">
+            <input type="text" class="form-control cod_pais" required id="cod_pais" value="{{isset($cliente)&&($cliente->telefones!=null)?$cliente->telefones->last()->cod_pais :''}}" name="cod_pais">
 
         </div>
         <div class="col-md-6 col-lg-2 col-sm-12 col_ddd">
             <label for="ddd">DDD: </label>
 
-            <input type="text" value="{{isset($cliente)&&($cliente->telefones!=null)?$cliente->telefones->last()->ddd:''}}" class="form-control ddd" required id="ddd" name="ddd">
+            <input type="text" value="{{isset($cliente)&&($cliente->telefones!=null)?$cliente->telefones->last()->ddd  . '' :''}}" class="form-control ddd" required id="ddd" name="ddd">
 
         </div>
         <!--Numero de telefone -->
         <div class="col-md-6 col-lg-4 col-sm-12 col_telefone_numero">
             <label for="numero">Numero: </label>
-            <input type="text" maxlength="10" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" value="{{isset($cliente)&&($cliente->telefones!=null)?$cliente->telefones->last()->numero:''}}" class="form-control telefone_numero" required id="numero" name="telefone_numero">
+            <input type="text" maxlength="10" value="{{isset($cliente)&&($cliente->telefones!=null)?$cliente->telefones->last()->telefone_numero:''}}" class="form-control telefone_numero" required id="numero" name="telefone_numero">
         </div>
         <p></p>
 
@@ -132,10 +132,12 @@
 <script type="text/javascript">
     $(document).ready(function() {
         //Mascaras
-        $('.col_ddd').hide();
-        $('.col_cod_pais').hide()
-        $('.col_telefone_numero').hide();
-        $('#cod_pais').mask('(+##)')
+        if ($('.tipo_telefone').val() == -1) {
+            $('.col_ddd').hide();
+            $('.col_cod_pais').hide()
+            $('.col_telefone_numero').hide();
+        }
+        $('#cod_pais').mask('(##)')
         $('.ddd').mask('(##)')
         $('.tipo_telefone').change(function() {
             if ($('.tipo_telefone') != -1) {
