@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/{id}/restore','UsuarioController@restore');
     Route::resource('/usuario','UsuarioController');
     //Rotas de cliente
+    route::get('/cliente/inativos','ClienteController@inativos');
+    route::get('/cliente/{id}/restore','ClienteController@restore');
     Route::resource('/cliente','ClienteController');
     
 });

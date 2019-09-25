@@ -62,7 +62,7 @@ class ClienteController extends Controller
             if ($request->cep != null) {
                 $endereco = Endereco::create($request->all());
                 $endereco->cliente()->associate($cliente)->save();
-                //  dd($endereco);
+
             }
 
             if ($request->tipo_telefone_id != -1) {
@@ -70,15 +70,12 @@ class ClienteController extends Controller
                 $ddd = preg_replace('/[^a-z0-9\-]/', '', $request->ddd);
                 $numero =  $request->telefone_numero;
                 $numero = str_replace('-', '', $numero);
-                //    return 1;
-
                 $telefone = Telefone::create([
                     'ddd' => $ddd,
                     'cod_pais' => $cod_pais,
                     'telefone_numero' => $numero,
                     'tipo_telefone_id' => intval($request->tipo_telefone_id)
                 ]);
-                //dd($telefone);
                 $telefone->cliente()->associate($cliente)->save();
             }
             DB::commit();
@@ -128,7 +125,37 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try{
+//            dd($request->all());
+            $cliente = Cliente::findOrFail($id);
+            $cliente->update($request->all());
+          
+            if ($request->cep != null) {
+                $endereco = Endereco::create($request->all());
+                $endereco->cliente()->associate($cliente)->save();
+
+            }
+            if ($request->tipo_telefone_id != -1) {
+                $cod_pais = preg_replace('/[^a-z0-9\-]/', '', $request->cod_pais);
+                $ddd = preg_replace('/[^a-z0-9\-]/', '', $request->ddd);
+                $numero =  $request->telefone_numero;
+                $numero = str_replace('-', '', $numero);
+                $telefone = Telefone::create([
+                    'ddd' => $ddd,
+                    'cod_pais' => $cod_pais,
+                    'telefone_numero' => $numero,
+                    'tipo_telefone_id' => intval($request->tipo_telefone_id)
+                ]);
+                $telefone->cliente()->associate($cliente)->save();
+            }
+            DB::commit();
+            return redirect('/cliente')->with('success', 'Cliente '. $cliente->nome . " atualizado com sucesso");
+
+        }catch(Exception $e){
+            DB::rollback();
+        return back()->with('warning', 'Erro inesperado ao tentar inserir. contate o administrador do sistema. cod erro:'+ $e->getMessage());
+        }
     }
 
     /**
@@ -140,5 +167,19 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         //
+        $cliente = Cliente::findOrFail($id);
+        $nome = $cliente->nome;
+        $cliente->delete();
+        return redirect('/cliente')->with('success','Cliente' . $nome . " Excluido com sucesso");
+    }
+    public function inativos(){
+        $flag = 0;
+        $clientesInativos = Cliente::onlyTrashed()->get();
+        return view('cliente.index',compact('flag','clientesInativos'));
+    }
+    public function restore($id){
+        $cliente = Cliente::onlyTrashed()->findOrFail($id);
+        $cliente->restore();
+        return back()->with('success','Cliente '. $cliente->nome . " restaurado");
     }
 }

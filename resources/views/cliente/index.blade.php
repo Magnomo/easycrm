@@ -83,7 +83,7 @@
         <tr>
             <td>{{$cliente->id}}</td>
             <td>{{$cliente->nome}}</td>
-            <td>{{$cliente->user->email}}</td>
+            <td>{{$cliente->email}}</td>
             <td>
                 <a href="{{url('cliente/'.$cliente->id .'/restore')}}"><button class="btn btn-primary btn-sm"> <i class="material-icons">restore_from_trash</i></button></a>
             </td>
