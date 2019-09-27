@@ -4,7 +4,7 @@ $moduleInfo = [
     'name' => 'Easycrm',
 ];
 $menu = [
-    ['icon' => 'shopping_basket', 'tool' => 'Produtos', 'route' => url('/')],
+    ['icon' => 'shopping_basket', 'tool' => 'Produtos', 'route' => url('/produto')],
     ['icon' => 'person', 'tool' => 'Usuários', 'route' => url('/usuario')],
     ['icon' => 'person', 'tool' => 'Clientes', 'route' => url('/cliente')],
     ['icon' => 'shopping_cart', 'tool' => 'Vendas   ', 'route' => url('estoque')],

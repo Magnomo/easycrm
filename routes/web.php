@@ -27,6 +27,11 @@ Route::group(['middleware' => 'auth'], function () {
     route::get('/cliente/inativos','ClienteController@inativos');
     route::get('/cliente/{id}/restore','ClienteController@restore');
     Route::resource('/cliente','ClienteController');
+    //Rotas de Produto
+
+    route::get('/produto/inativos','ProdutoController@inativos');
+    route::get('/produto/{id}/restore','ProdutoController@restore');
+    Route::resource('/produto', 'ProdutoController');
     
 });
 Route::post('/buscaEmail','UsuarioController@buscaEmail');
