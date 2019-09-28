@@ -20,19 +20,22 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
     // Rotas de usuário
-    Route::get('/usuario/inativos','UsuarioController@inativos');
-    Route::get('/usuario/{id}/restore','UsuarioController@restore');
-    Route::resource('/usuario','UsuarioController');
+    Route::get('/usuario/inativos', 'UsuarioController@inativos');
+    Route::get('/usuario/{id}/restore', 'UsuarioController@restore');
+    Route::resource('/usuario', 'UsuarioController');
     //Rotas de cliente
-    route::get('/cliente/inativos','ClienteController@inativos');
-    route::get('/cliente/{id}/restore','ClienteController@restore');
-    Route::resource('/cliente','ClienteController');
+    route::get('/cliente/inativos', 'ClienteController@inativos');
+    route::get('/cliente/{id}/restore', 'ClienteController@restore');
+    Route::resource('/cliente', 'ClienteController');
     //Rotas de Produto
 
-    route::get('/produto/inativos','ProdutoController@inativos');
-    route::get('/produto/{id}/restore','ProdutoController@restore');
+    route::get('/produto/inativos', 'ProdutoController@inativos');
+    route::get('/produto/{id}/restore', 'ProdutoController@restore');
     Route::resource('/produto', 'ProdutoController');
-    
+    //Rotas Categoria
+    Route::get('/categoria/inativos','CategoriaController@inativos');
+    Route::get('/categoria/{id}/restore','CategoriaController@restore');
+    Route::resource('/categoria', 'CategoriaController');
 });
-Route::post('/buscaEmail','UsuarioController@buscaEmail');
-
+Route::post('/buscaEmail', 'UsuarioController@buscaEmail');
+Route::post('verificaNomeCategoria', 'CategoriaController@verificaNome');
