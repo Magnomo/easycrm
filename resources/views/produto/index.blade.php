@@ -17,7 +17,9 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
-            <th scope="col">Email</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Cor</th>
+            <th scope="col">Tamanho</th>
             <th scope="col">Editar</th>
             <th scope="col">Excluir</th>
         </tr>
@@ -27,7 +29,9 @@
         <tr>
             <td>{{$produto->id}}</td>
             <td>{{$produto->nome}}</td>
-            <td>{{$produto->email}}</td>
+            <td>{{$produto->preco}}</td>
+            <td>{{$produto->cor}}</td>
+            <td>{{$produto->tamanho}}</td>
             
             <td>
                 <a href="#"><button class="btn btn-primary btn-sm"> <i class="material-icons">list</i></button></a>
@@ -74,7 +78,9 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
-            <th scope="col">Email</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Cor</th>
+            <th scope="col">Tamanho</th>
             <th scope="col">Restaurar</th>
         </tr>
     </thead>
@@ -83,7 +89,9 @@
         <tr>
             <td>{{$produto->id}}</td>
             <td>{{$produto->nome}}</td>
-            <td>{{$produto->email}}</td>
+            <td>{{$produto->preco}}</td>
+            <td>{{$produto->cor}}</td>
+            <td>{{$produto->tamanho}}</td>
             <td>
                 <a href="{{url('produto/'.$produto->id .'/restore')}}"><button class="btn btn-primary btn-sm"> <i class="material-icons">restore_from_trash</i></button></a>
             </td>

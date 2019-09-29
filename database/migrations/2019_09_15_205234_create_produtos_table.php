@@ -18,10 +18,10 @@ class CreateProdutosTable extends Migration
             $table->string('nome', 50);
             $table->string('marca', 50);
             $table->string('cor', 50);
-            $table->double('preco', 7, 3);
+            $table->float('preco', 7, 3);
             $table->integer('categoria_id')->unsigned()->index('fk_categoria');
             $table->string('descricao', 500);
-            $table->enum('tamanho', ['PP', 'P', 'M', 'G', 'GG']);
+            $table->string('tamanho',10);
             $table->softDeletes();
             $table->timestamps();
         });

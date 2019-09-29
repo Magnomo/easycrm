@@ -27,14 +27,17 @@
     <div class="form-group row">
         <label for="preco" class="col-md-4 col-form-label text-md-right">Preço</label>
         <div class="col-md-6">
-            <input id="preco" pattern="^\d+(,\d{1,2})?$" required type="text" class="form-control preco " name="email" value="{{ (isset($produto))?$produto->preco:old('preco') }}" required>
+            <input id="preco" pattern="^\d+(,\d{1,2})?$" required type="text" class="form-control preco " name="preco" value="{{ (isset($produto))?$produto->preco:old('preco') }}" required>
         </div>
     </div>
     <div class="form-group row">
         <label for="categoria" class="col-md-4 col-form-label text-md-right">Categoria</label>
         <div class="col-md-6">
-        <select class='custom-select categoria'>
-            <option value="0">Selecionse</option>
+        <select class='custom-select categoria' name="categoria">
+            <option value="0">Selecione</option>
+            @foreach($data['categorias'] as $categoria)
+            <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
+            @endforeach
         </select> 
         </div>
     </div>
@@ -43,14 +46,14 @@
 
         <div class="col-md-6">
             @if(!isset($usuario))
-            <input type="number" maxlength=3 class="form-control">
+            <input type="number" name="tamanho" maxlength=3 value="{{isset($produto)?$produto->preco:''}}" class="form-control">
             @endif
         </div>
     </div>
     <div class="form-group row">
         <label for="descricao" class="col-md-4 col-form-label text-md-right">Descrição</label>
         <div class="col-md-6">
-            <textarea id="descricao" class="form-control descricao " name="descricao" required></textarea>
+            <textarea id="descricao" class="form-control descricao " name="descricao" required>{{isset($produto)?$produto->descricao:''}}</textarea>
         </div>
     </div>
 
