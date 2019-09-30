@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\{Categoria, Produto};
-use Illuminate\Http\Request;
+use App\Categoria;
+use App\Produto;
 use DB;
+use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
@@ -33,7 +34,7 @@ class ProdutoController extends Controller
             'title' => 'Cadastrar Produto',
             'url' => url('produto/'),
             'button' => "Cadastrar",
-            'categorias' => Categoria::all()
+            'categorias' => Categoria::all(),
         ];
         return view('produto.form', compact('data'));
     }
@@ -63,7 +64,7 @@ class ProdutoController extends Controller
             return redirect('/produto')->with('success', 'Produto Cadastrado com sucesso');
         } catch (Exception $ex) {
             DB::rollback();
-            return back()->with('warning', 'Erro inesperado ao inserir. cod:' + $ex->getMessage());
+            return back()->with('warning', 'Erro inesperado ao inserir. cod:'+$ex->getMessage());
         }
     }
 
@@ -92,7 +93,7 @@ class ProdutoController extends Controller
             'title' => 'Cadastrar Produto',
             'url' => url('produto/' . $id),
             'button' => "Atualizar",
-            'categorias' => Categoria::all()
+            'categorias' => Categoria::all(),
         ];
         return view('produto.form', compact('data', 'produto'));
     }
@@ -124,7 +125,7 @@ class ProdutoController extends Controller
             return redirect('/produto')->with('success', 'Produto Atualizado com sucesso');
         } catch (Exception $ex) {
             DB::rollback();
-            return back()->with('warning', 'Erro inesperado ao atualizar. cod:' + $ex->getMessage());
+            return back()->with('warning', 'Erro inesperado ao atualizar. cod:'+$ex->getMessage());
         }
     }
 
@@ -154,5 +155,10 @@ class ProdutoController extends Controller
         $produto = Produto::onlyTrashed()->findOrFail($id);
         $produto->restore();
         return back()->with('success', 'Categoria ' . $produto->nome . ' restaurada com sucesso');
+    }
+    public function buscaPreco(Request $request)
+    {
+        $preco = DB::table('produto')->select('preco')->where('id',$request->id)->get()->last();
+        return json_encode($preco);
     }
 }

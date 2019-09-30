@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,9 +33,13 @@ Route::group(['middleware' => 'auth'], function () {
     route::get('/produto/{id}/restore', 'ProdutoController@restore');
     Route::resource('/produto', 'ProdutoController');
     //Rotas Categoria
-    Route::get('/categoria/inativos','CategoriaController@inativos');
-    Route::get('/categoria/{id}/restore','CategoriaController@restore');
+    Route::get('/categoria/inativos', 'CategoriaController@inativos');
+    Route::get('/categoria/{id}/restore', 'CategoriaController@restore');
     Route::resource('/categoria', 'CategoriaController');
+
+    /// Rotas de Venda
+    Route::resource('/venda', 'VendaController');
 });
 Route::post('/buscaEmail', 'UsuarioController@buscaEmail');
 Route::post('verificaNomeCategoria', 'CategoriaController@verificaNome');
+Route::post('buscaPreco','ProdutoController@buscaPreco');

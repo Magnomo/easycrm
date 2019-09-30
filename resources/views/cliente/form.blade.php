@@ -24,7 +24,7 @@
 
         </div>
         <!--Data de nascimento -->
-        <div class="col-md-4">
+        <div class="col-md-4  ">
             <label for="dt_nascimento">Data de Nascimento: </label>
 
             <input type="date" class="form-control" id="dt_nascimento" name="dt_nascimento">
@@ -39,7 +39,7 @@
 
     <div class="form-row">
         <!--CEP -->
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-4">
             <label for="cep">Cep</label>
             <input type="text" class="form-control cep" id="cep" value="{{isset($cliente)?$cliente->enderecos->last()->cep:''}}" name="cep" required>
 
@@ -128,17 +128,17 @@
 @endsection
 @yield('js')
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{asset('js/jquery.mask.js')}} "></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
+    
         //Mascaras
         if ($('.tipo_telefone').val() == -1) {
             $('.col_ddd').hide();
             $('.col_cod_pais').hide()
             $('.col_telefone_numero').hide();
         }
-        $('#cod_pais').mask('(##)')
-        $('.ddd').mask('(##)')
+       
         $('.tipo_telefone').change(function() {
             if ($('.tipo_telefone') != -1) {
                 $('.col_ddd').show("slow");
