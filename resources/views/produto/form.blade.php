@@ -27,7 +27,7 @@
     <div class="form-group row">
         <label for="preco" class="col-md-4 col-form-label text-md-right">Preço</label>
         <div class="col-md-6">
-            <input id="preco" pattern="^\d+(,\d{1,2})?$" required type="text" class="form-control preco " name="preco" value="{{ (isset($produto))?$produto->preco:old('preco') }}" required>
+            <input id="preco" required type="text" class="form-control preco " name="preco" value="{{ (isset($produto))?$produto->preco:old('preco') }}" required>
         </div>
     </div>
     <div class="form-group row">

@@ -4,7 +4,7 @@ $moduleInfo = [
     'name' => 'Easycrm',
 ];
 $menu = [
-    ['icon' => 'shopping_basket', 'tool' => 'Produtos', 'route' => url('/produto')],    
+    ['icon' => 'shopping_basket', 'tool' => 'Produtos', 'route' => url('/produto')],
     ['icon' => 'menu', 'tool' => 'Categorias', 'route' => url('/categoria')],
     ['icon' => 'person', 'tool' => 'Usuários', 'route' => url('/usuario')],
     ['icon' => 'person', 'tool' => 'Clientes', 'route' => url('/cliente')],
@@ -30,34 +30,42 @@ $menu = [
             min-width: 210px;
             min-height: 100vh;
         }
+
         #sidebar a {
             color: #cfd8dc
         }
+
         #sidebar a:hover {
             background: #29353d
         }
+
         #sidebar a.active {
             color: #fff;
             background: #29353d;
         }
+
         #module-info {
             color: #fff;
             min-height: 64px;
             padding-left: 10px;
         }
+
         #module-info i {
             font-size: 36px;
         }
+
         #module-info h1 {
             max-width: 100px;
             font-size: 18px;
             margin: 0;
         }
+
         #workspace {
             width: 100%;
             margin-left: 210px;
             background: #f3f6f7;
         }
+
         #header {
             z-index: 99;
             width: calc(100% - 210px);
@@ -67,22 +75,26 @@ $menu = [
             height: 64px;
             color: #5f6368;
         }
+
         #content {
             margin-top: 64px;
             padding: 16px;
             min-height: calc(100vh - 128px);
         }
+
         #footer {
             color: #5f6368;
             height: 64px;
             padding-left: 16px;
             border-top: 1px solid #cfd8dc;
         }
+
         .btn-circle {
             border-radius: 50%;
             cursor: pointer;
             padding: 10px;
         }
+
         .btn-circle:hover {
             background: #ededed;
         }
@@ -113,64 +125,64 @@ $menu = [
                     <span>Menu</span>
                 </div>
                 <div class="d-flex align-items-center">
-                <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
             </div>
             <div id="content">
-                @if(Session::get('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{Session::get("success")}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="row">
+                    @if (Session::has('success'))
+                    <script>
+                        window.onload = function() {
+                            alertMsg('{{Session::get("success")}}', 'success')
+                        }
+                    </script>
+                    @endif
+
+                    @if (Session::has('warning'))
+                    <script>
+                        window.onload = function() {
+                            alertMsg('{{Session::get("warning")}}', 'warning')
+                        }
+                    </script>
+                    @endif
+
+                    @if (Session::has('error'))
+                    <script>
+                        window.onload = function() {
+                            alertMsg('{{Session::get("error")}}', 'error')
+                        }
+                    </script>
+                    @endif
                 </div>
-                @endif
-                @if(Session::get('warning'))
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    {{Session::get('warning')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                @endif
-                @if(Session::get('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{Session::get('error')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                @endif
                 <div class="container">
 
                     <div class="card text-center">
@@ -197,11 +209,33 @@ $menu = [
         </div>
     </div>
     <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{asset('js/sweetalerts.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
     <!-- Toggle Menu Script -->
     <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000
+        });
+
+        function alertMsg(msg, type) {
+            Toast.fire({
+                type: type,
+                title: msg
+            })
+        }
+
         function toggleMenu() {
+
+
+
+
+
             var sidebar = document.getElementById('sidebar');
             var workspace = document.getElementById('workspace');
             var header = document.getElementById('header');
