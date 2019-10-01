@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
-
-use App\Produto;
-use App\Venda;
+use App\{Venda, Produto, Pagamento};
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,18 +53,51 @@ class VendaController extends Controller
         DB::beginTransaction();
         try {
             $user = Auth::user();
-
+            $pagamento = new Pagamento;
             $cliente = Cliente::findOrFail($request->cliente);
             $venda = new Venda;
             $venda->usuario()->associate($user->usuario);
             $venda->cliente()->associate($cliente)->save();
+
+
             $venda->status = 'fechada';
             $total = 0;
+
             foreach ($request['produtos'] as $key => $produto) {
                 $venda->produtos()->attach($produto, array('quantidade' => $request['quantidades'][$key]));
                 $total += $venda->produtos->get($key)->preco * $request['quantidades'][$key];
             }
             $venda->total = $total;
+            //  dd($request->all());
+            if ($request->forma_pagamento != 0) {
+                //Selecionou Pagamento
+                if ($request->tipo_pagamento == 2) {
+                    //Selecionou pagamento do tipo Débito
+
+                    $pagamento->valor = $total;
+                    $pagamento->save();
+                    $pagamento->data_pagamento = $pagamento->created_at;
+                } else {
+                    //Selecionou pagamento tipo crédito, dinheiro ou outro
+                    $pagamento->valor = $total / $request->parcelas;
+                    $pagamento->data_vencimento = $request->vencimento_parcela;
+                    $pagamento->venda()->associate($venda);
+                    $data =  Date('Y-m-d');
+                    for ($i = 0; $i < $request->parcelas; $i++) {
+                        $data =  mktime(0, 0, 0, date("m") + $i, date("d"),  date("Y"));
+                        $data = date('Y-m-d', $data);
+                        $pag = new Pagamento;
+                        $pag->valor = $pagamento->valor;
+                        $pag->data_vencimento = $data;
+                        $pag->venda()->associate($venda)->save();
+                    }
+                }
+                
+            } else {
+                //não selecionou tipo de pagamento
+                return back()->with('warning', 'é necessário selecionar um tipo pagamento');
+            }
+            // dd(date('Y-m-d',strtotime('+1 month')));
             $venda->save();
             DB::commit();
             return redirect('/venda')->with('success', 'Venda Cadastrada com sucesso');

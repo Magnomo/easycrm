@@ -17,14 +17,17 @@ class Venda extends Model
     public function produtos()
     {
         return $this->belongsToMany('App\Produto', 'item_venda', 'produto_id', 'venda_id')->withPivot('quantidade');
-
     }
     public function usuario()
     {
         return $this->belongsTo('App\Usuario');
     }
-    public function formaPagamento(){
+    public function formaPagamento()
+    {
         return $this->belongsTo('App\TipoPagamento');
     }
-
+    public function Pagamento()
+    {
+        return $this->hasMany('App\Pagamento');
+    }
 }

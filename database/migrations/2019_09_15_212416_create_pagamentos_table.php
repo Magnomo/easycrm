@@ -16,9 +16,9 @@ class CreatePagamentosTable extends Migration
         Schema::create('pagamento', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('venda_id')->unsigned()->index('fk_venda');
-            $table->integer('tipo_pagamento')->unsigned()->index('fk_pagamento');
             $table->double('valor',7,2);
-            $table->date('data_pagamento');
+            $table->date('data_pagamento')->nullable();
+            $table->date('data_vencimento')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

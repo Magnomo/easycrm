@@ -15,16 +15,28 @@
             @endforeach
         </select>
     </div>
-    <div class="form-group col-md-12">
-        <label>Forma de Pagamento:</label>
-        <select class="form-control" name="forma_pagamento">
-            <option>Selecione uma opção</option>
-            <option value="1">Crédito</option>
-            <option value="2">Débito</option>
-            <option value="3">Dinheiro</option>
-            <option value="4">Outro</option>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label>Forma de Pagamento:</label>
+            <select class="form-control tipo_pagamento" name="forma_pagamento">
+                <option value='0'>Selecione uma opção</option>
+                <option value="1">Crédito</option>
+                <option value="2">Débito</option>
+                <option value="3">Dinheiro</option>
+                <option value="4">Outro</option>
+            </select>
+        </div>
 
-        </select>
+        <div class="col-md-2 form-group parcelas">
+            <label for="parcelas">Nª Parcelas</label>
+            <input type="number" class="form-control" name="parcelas" placeholder="Ex: 3">
+        </div>
+        <div class="vencimento_parcela form-group col-md-4">
+            <label for=".vencimento_parcela">Vencimento</label>
+            <input type="date" class="form-control" name="vencimento_parcela">
+        </div>
+
+
     </div>
     <div class='adicionarProduto'>
         <div class="card-header text-center">Adicionar Produtos</div>
@@ -67,6 +79,8 @@
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+        $('.parcelas').hide();
+        $('.vencimento_parcela').hide();
         $('.removerProduto').click(function(e) {
             e.preventDefault();
             var ultimo = document.querySelectorAll(".adicionarProduto")
@@ -78,10 +92,28 @@
             var id = $(this).val()
             buscaPreco($(this), id)
         })
+        $('.tipo_pagamento').change(function() {
+
+            if ($(this).val() != 2 && $(this).val() != 0) {
+                $(this).parent().removeClass('col-md-12')
+                $(this).parent().addClass('col-md-6')
+                $('.parcelas').show('slow')
+                $('.vencimento_parcela').show('slow')
+            } else {
+                $(this).parent().removeClass('col-md-6')
+                $(this).parent().addClass('col-md-12')
+
+                $('.parcelas').hide()
+                $('.vencimento_parcela').hide()
+                $(this).focus()
+
+            }
+        })
         $('.quantidade').change(function() {
             var quantidade = $(this).val();
             if (quantidade <= 0) {
                 $(this).val("")
+
             }
         })
         $('.add').click(function() {
@@ -119,6 +151,8 @@
             var preco = $.parseJSON(data)['preco']
             console.log(preco)
             select.parent().parent().find('input.preco').val(preco)
-        }).fail(function() {})
+        }).fail(function() {
+
+        })
     }
 </script>
