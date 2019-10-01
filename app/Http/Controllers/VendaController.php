@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Cliente;
 
 use App\Produto;
-use App\Venda;use DB;
+use App\Venda;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,19 +59,21 @@ class VendaController extends Controller
             $cliente = Cliente::findOrFail($request->cliente);
             $venda = new Venda;
             $venda->usuario()->associate($user->usuario);
-            $venda->cliente()->associate($cliente);
+            $venda->cliente()->associate($cliente)->save();
             $venda->status = 'fechada';
             $total = 0;
             foreach ($request['produtos'] as $key => $produto) {
                 $venda->produtos()->attach($produto, array('quantidade' => $request['quantidades'][$key]));
+                $total += $venda->produtos->get($key)->preco * $request['quantidades'][$key];
             }
+            $venda->total = $total;
             $venda->save();
             DB::commit();
-            return redirect('/venda')->with('success','Venda Cadastrada com sucesso');
+            return redirect('/venda')->with('success', 'Venda Cadastrada com sucesso');
         } catch (Exception $ex) {
             DB::rollback();
-            
-            return back()->with('error','Erro ao registrar venda. cod:'+ $ex->getMessage());
+
+            return back()->with('error', 'Erro ao registrar venda. cod:' + $ex->getMessage());
         }
     }
 

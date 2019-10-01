@@ -23,5 +23,8 @@ class Venda extends Model
     {
         return $this->belongsTo('App\Usuario');
     }
+    public function formaPagamento(){
+        return $this->belongsTo('App\TipoPagamento');
+    }
 
 }
