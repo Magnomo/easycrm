@@ -4,7 +4,7 @@
 @if($flag=1)
 <table class="table text-center ">
 
-    <thead class="">
+    <thead class="thead-dark">
 
         <div class="col-12 text-right mb-4">
             <a class="btn btn-success btn-sm" href="{{url('venda/create')}}">
@@ -18,7 +18,7 @@
            
             <th scope="col">Cliente</th>
             <th scope="col">Data</th>
-            <th scope="col">status</th>
+            <th scope="col">Forma de Pagamento</th>
             <th scope="col">Numero de Parcelas</th>
             <th scope="col">Parcelas Restantes</th>
             <th>Total</th>
@@ -33,7 +33,7 @@
         <tr>
             <td>{{isset($venda->cliente)?$venda->cliente->nome:''}}</td>
             <td>{{$venda->created_at}}</td>
-            <td>{{$venda->status}}</td>
+            <td>{{$venda->formaPagamento()}}</td>
             <td>{{$venda->numero_parcelas}}</td>
             <td>{{$venda->parcelasRestantes()}}</td>
             <td class='total'>{{$venda->total}}</td>
@@ -43,7 +43,7 @@
                 <a href="{{url('/venda/'. $venda->id. '/show')}}" class="btn btn-primary btn-sm"> <i class="material-icons">remove_red_eye</i></a>
             </td>
             <td>
-                <a class="btn btn-sm btn-info" href="{{url('venda/'.$venda->id .'/edit')}}">
+                <a class="btn btn-sm btn-secondary" href="{{url('venda/'.$venda->id .'/edit')}}">
                     <i class="material-icons">border_color</i>
                 </a>
             </td>

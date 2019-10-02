@@ -8,7 +8,7 @@ class Venda extends Model
 {
     //
     protected $table = "venda";
-    protected $fillable = ['data_venda', 'total', 'numero_parcelas','forma_pagamento' ,'status', 'cliente_id', 'usuario_id'];
+    protected $fillable = ['data_venda', 'total', 'numero_parcelas', 'forma_pagamento', 'status', 'cliente_id', 'usuario_id'];
 
     public function cliente()
     {
@@ -24,13 +24,30 @@ class Venda extends Model
     }
     public function formaPagamento()
     {
-        return $this->belongsTo('App\TipoPagamento');
+        $forma = $this->forma_pagamento;
+        $nome = "";
+        switch ($forma) {
+            case 1:
+                $nome = 'Crédito';
+                break;
+            case 2:
+                $nome = "Débito";
+                break;
+            case 3:
+                $nome = "Dinheiro";
+                break;
+            case 4:
+                $nome = 'Outro';
+                break;
+        }
+        return $nome;
     }
     public function pagamentos()
     {
         return $this->hasMany('App\Pagamento');
     }
-    public function parcelasRestantes(){
-        return $this->pagamentos()->where('data_pagamento',null)->count();
+    public function parcelasRestantes()
+    {
+        return $this->pagamentos()->where('data_pagamento', null)->count();
     }
 }
