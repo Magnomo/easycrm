@@ -10,7 +10,8 @@ $menu = [
     ['icon' => 'person', 'tool' => 'Clientes', 'route' => url('/cliente')],
     ['icon' => 'shopping_cart', 'tool' => 'Vendas   ', 'route' => url('/venda')],
     ['icon' => 'store', 'tool' => 'Estoque', 'route' => url('/estoque')],
-    ['icon' => 'store', 'tool' => 'Relatórios', 'route' => url('/relatorios')],
+    ['icon' => 'pie_chart', 'tool' => 'Relatórios', 'route' => url('/relatorio')],
+    ['icon' => 'settings_applications', 'tool' => 'Configurações', 'route' => url('/settings')],
 ];
 ?>
 <!DOCTYPE html>

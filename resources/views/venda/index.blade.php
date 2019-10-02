@@ -15,7 +15,7 @@
             </a>
         </div>
         <tr>
-            <th scope="col">ID</th>
+           
             <th scope="col">Cliente</th>
             <th scope="col">Data</th>
             <th scope="col">status</th>
@@ -31,12 +31,11 @@
     <tbody>
         @foreach($vendas as $venda)
         <tr>
-            <td>{{$venda->id}}</td>
             <td>{{isset($venda->cliente)?$venda->cliente->nome:''}}</td>
             <td>{{$venda->created_at}}</td>
-            <td>Teste</td>
-            <td>Teste</td>
-            <td>Teste</td>
+            <td>{{$venda->status}}</td>
+            <td>{{$venda->numero_parcelas}}</td>
+            <td>{{$venda->parcelasRestantes()}}</td>
             <td class='total'>{{$venda->total}}</td>
 
 

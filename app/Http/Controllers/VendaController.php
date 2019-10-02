@@ -55,9 +55,7 @@ class VendaController extends Controller
             $venda = new Venda;
             $user = Auth::user();
             $pagamento = new Pagamento;
-
             $venda->forma_pagamento = $request->forma_pagamento;
-
             $total = 0;
             $venda->usuario()->associate($user->usuario)->save();
             if (isset($request->cliente)) {
@@ -76,7 +74,7 @@ class VendaController extends Controller
                 $data =  Date('Y-m-d');
                 //Selecionou Pagamento
                 if ($request->forma_pagamento == 2) {
-                    $venda->numero_parcelas =1;
+                    $venda->numero_parcelas = 1;
 
                     //Selecionou pagamento do tipo Débito
                     $pagamento->valor = $total;
@@ -85,23 +83,26 @@ class VendaController extends Controller
                     $pagamento->data_pagamento = $data;
                     $pagamento->save();
                 } else {
-                    $pagamento->status = "Aberto";
                     //Selecionou pagamento tipo crédito, dinheiro ou outro
-                    $pagamento->valor = $total / $request->parcelas;
-                    $pagamento->data_vencimento = $request->vencimento_parcela;
-                    $pagamento->venda()->associate($venda)->save();
-                    if ($request->parcelas == 3) {
+                    if ($request->forma_pagamento == 3) {
+                        //Venda no dinheiro
                         $venda->status = "Finalizado";
-                        $venda->save();
-                    }
-
-                    for ($i = 0; $i < $request->parcelas; $i++) {
-                        $data =  mktime(0, 0, 0, date("m") + $i, date("d"),  date("Y"));
-                        $data = date('Y-m-d', $data);
-                        $pag = new Pagamento;
-                        $pag->valor = $pagamento->valor;
-                        $pag->data_vencimento = $data;
-                        $pag->venda()->associate($venda)->save();
+                        $pagamento->data_pagamento = date('Y-m-d');
+                        $pagamento->valor = $total;
+                        $pagamento->venda()->associate($venda)->save();
+                    } else {
+                        $pagamento->valor = $total / $request->parcelas;
+                        $pagamento->data_vencimento = $request->vencimento_parcela;
+                        $pagamento->venda()->associate($venda)->save();
+                        //Selecionou Crédito ou outro
+                        for ($i = 1; $i < $request->parcelas; $i++) {
+                            $data =  mktime(0, 0, 0, date("m") + $i, date("d"),  date("Y"));
+                            $data = date('Y-m-d', $data);
+                            $pag = new Pagamento;
+                            $pag->data_vencimento = $data;
+                            $pag->valor = $pagamento->valor;
+                            $pag->venda()->associate($venda)->save();
+                        }
                     }
                 }
             } else {
