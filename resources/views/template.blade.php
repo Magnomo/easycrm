@@ -8,8 +8,9 @@ $menu = [
     ['icon' => 'menu', 'tool' => 'Categorias', 'route' => url('/categoria')],
     ['icon' => 'person', 'tool' => 'Usuários', 'route' => url('/usuario')],
     ['icon' => 'person', 'tool' => 'Clientes', 'route' => url('/cliente')],
-    ['icon' => 'shopping_cart', 'tool' => 'Vendas   ', 'route' => url('estoque')],
-    ['icon' => 'store', 'tool' => 'Estoque', 'route' => url('estoque')],
+    ['icon' => 'shopping_cart', 'tool' => 'Vendas   ', 'route' => url('/venda')],
+    ['icon' => 'store', 'tool' => 'Estoque', 'route' => url('/estoque')],
+    ['icon' => 'store', 'tool' => 'Relatórios', 'route' => url('/relatorios')],
 ];
 ?>
 <!DOCTYPE html>
@@ -25,10 +26,11 @@ $menu = [
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         #sidebar {
-            background: #303e45;
+            background: #020945;
             position: fixed;
             min-width: 210px;
             min-height: 100vh;
+            border-radius:6px;
         }
 
         #sidebar a {
@@ -69,7 +71,7 @@ $menu = [
         #header {
             z-index: 99;
             width: calc(100% - 210px);
-            background: #fff;
+            background:#F1F3FC;
             position: fixed;
             padding: 0 16px;
             height: 64px;
@@ -204,7 +206,7 @@ $menu = [
 
             </div>
             <div class="d-flex align-items-center" id="footer">
-                Todos direitos autorais Denise Lopes &copy
+                Todos direitos autorais Diego Magno &copy
             </div>
         </div>
     </div>

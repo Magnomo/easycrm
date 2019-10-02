@@ -9,7 +9,7 @@
     <div class="form-group col-md-12">
         <label>Escolha o cliente:</label>
         <select class="form-control" name="cliente">
-            <option>Selecione uma opção</option>
+            <option value="">Selecione uma opção</option>
             @foreach($data['clientes'] as $cliente)
             <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
             @endforeach

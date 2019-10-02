@@ -18,6 +18,9 @@
             <th scope="col">ID</th>
             <th scope="col">Cliente</th>
             <th scope="col">Data</th>
+            <th scope="col">status</th>
+            <th scope="col">Numero de Parcelas</th>
+            <th scope="col">Parcelas Restantes</th>
             <th>Total</th>
             <th>Visualizar</th>
             <th>Editar</th>
@@ -31,11 +34,14 @@
             <td>{{$venda->id}}</td>
             <td>{{isset($venda->cliente)?$venda->cliente->nome:''}}</td>
             <td>{{$venda->created_at}}</td>
+            <td>Teste</td>
+            <td>Teste</td>
+            <td>Teste</td>
             <td class='total'>{{$venda->total}}</td>
 
 
             <td>
-                <a href="#"><button class="btn btn-primary btn-sm"> <i class="material-icons">list</i></button></a>
+                <a href="{{url('/venda/'. $venda->id. '/show')}}" class="btn btn-primary btn-sm"> <i class="material-icons">remove_red_eye</i></a>
             </td>
             <td>
                 <a class="btn btn-sm btn-info" href="{{url('venda/'.$venda->id .'/edit')}}">

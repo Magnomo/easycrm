@@ -52,37 +52,49 @@ class VendaController extends Controller
     {
         DB::beginTransaction();
         try {
+            $venda = new Venda;
             $user = Auth::user();
             $pagamento = new Pagamento;
-            $cliente = Cliente::findOrFail($request->cliente);
-            $venda = new Venda;
-            $venda->usuario()->associate($user->usuario);
-            $venda->cliente()->associate($cliente)->save();
 
+            $venda->forma_pagamento = $request->forma_pagamento;
 
-            $venda->status = 'fechada';
             $total = 0;
-
-            foreach ($request['produtos'] as $key => $produto) {
-                $venda->produtos()->attach($produto, array('quantidade' => $request['quantidades'][$key]));
-                $total += $venda->produtos->get($key)->preco * $request['quantidades'][$key];
+            $venda->usuario()->associate($user->usuario)->save();
+            if (isset($request->cliente)) {
+                $cliente = Cliente::findOrFail($request->cliente);
+                $venda->cliente()->associate($cliente)->save();
             }
-            $venda->total = $total;
-            //  dd($request->all());
-            if ($request->forma_pagamento != 0) {
-                //Selecionou Pagamento
-                if ($request->tipo_pagamento == 2) {
-                    //Selecionou pagamento do tipo Débito
+            foreach ($request['produtos'] as $key => $produto)
+                $venda->produtos()->attach($produto, array('quantidade' => $request['quantidades'][$key]));
+            foreach ($venda->produtos as $produto)
+                $total += $venda->produtos->get($key)->preco * $request['quantidades'][$key];
 
+            $venda->total = $total;
+
+            if ($request->forma_pagamento != 0) {
+                $venda->numero_parcelas = $request->parcelas;
+                $data =  Date('Y-m-d');
+                //Selecionou Pagamento
+                if ($request->forma_pagamento == 2) {
+                    $venda->numero_parcelas =1;
+
+                    //Selecionou pagamento do tipo Débito
                     $pagamento->valor = $total;
+                    $pagamento->venda()->associate($venda)->save();
+                    $venda->status = "finalizado";
+                    $pagamento->data_pagamento = $data;
                     $pagamento->save();
-                    $pagamento->data_pagamento = $pagamento->created_at;
                 } else {
+                    $pagamento->status = "Aberto";
                     //Selecionou pagamento tipo crédito, dinheiro ou outro
                     $pagamento->valor = $total / $request->parcelas;
                     $pagamento->data_vencimento = $request->vencimento_parcela;
-                    $pagamento->venda()->associate($venda);
-                    $data =  Date('Y-m-d');
+                    $pagamento->venda()->associate($venda)->save();
+                    if ($request->parcelas == 3) {
+                        $venda->status = "Finalizado";
+                        $venda->save();
+                    }
+
                     for ($i = 0; $i < $request->parcelas; $i++) {
                         $data =  mktime(0, 0, 0, date("m") + $i, date("d"),  date("Y"));
                         $data = date('Y-m-d', $data);
@@ -92,7 +104,6 @@ class VendaController extends Controller
                         $pag->venda()->associate($venda)->save();
                     }
                 }
-                
             } else {
                 //não selecionou tipo de pagamento
                 return back()->with('warning', 'é necessário selecionar um tipo pagamento');
@@ -103,11 +114,9 @@ class VendaController extends Controller
             return redirect('/venda')->with('success', 'Venda Cadastrada com sucesso');
         } catch (Exception $ex) {
             DB::rollback();
-
             return back()->with('error', 'Erro ao registrar venda. cod:' + $ex->getMessage());
         }
     }
-
     /**
      * Display the specified resource.
      *

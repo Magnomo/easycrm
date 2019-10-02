@@ -94,9 +94,10 @@
             <label for="tipo_telefone">Tipo telefone: </label>
             <select class="form-control custom-select tipo_telefone" id="tipo_telefone" name="tipo_telefone_id">
                 <option value="-1">Selecione</option>
-                @foreach($data['tipo_telefones'] as $tipo)
-                <option {{isset($cliente)&&($cliente->telefones!=null)&&($cliente->telefones->last()->tipo_telefone_id==$tipo->id)?'selected':''}} value="{{$tipo->id}}">{{$tipo->tipo}}</option>
-                @endforeach
+                <option value="1">Comercial</option>
+                <option value="2">Residencial</option>
+                <option value="3">Celular</option>
+
             </select>
         </div>
         <div class="col-md-6 col-lg-2 col-sm-12 col_cod_pais">
@@ -131,14 +132,14 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-    
+
         //Mascaras
         if ($('.tipo_telefone').val() == -1) {
             $('.col_ddd').hide();
             $('.col_cod_pais').hide()
             $('.col_telefone_numero').hide();
         }
-       
+
         $('.tipo_telefone').change(function() {
             if ($('.tipo_telefone') != -1) {
                 $('.col_ddd').show("slow");
