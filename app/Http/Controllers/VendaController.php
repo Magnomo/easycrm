@@ -64,11 +64,9 @@ class VendaController extends Controller
             }
             foreach ($request['produtos'] as $key => $produto)
                 $venda->produtos()->attach($produto, array('quantidade' => $request['quantidades'][$key]));
-            foreach ($venda->produtos as $produto)
+            foreach ($venda->produtos as $key => $produto)
                 $total += $venda->produtos->get($key)->preco * $request['quantidades'][$key];
-
             $venda->total = $total;
-
             if ($request->forma_pagamento != 0) {
                 $venda->numero_parcelas = $request->parcelas;
                 $data =  Date('Y-m-d');
