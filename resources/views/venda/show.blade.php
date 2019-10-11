@@ -2,6 +2,7 @@
 @section('title', 'Visualizar venda')
 @section('body')
 <div class="card">
+
     <div class="card-header bg-info">
         <h3>Venda {{ $venda->id }} </h3>
     </div>
@@ -23,7 +24,7 @@
                     </div>
                     <div class="col-md-3">
                         <label>Vencimento:</label>
-                        <input type="text" name="data" value="{{ $venda->created_at }}" class="form-control data_venda" disabled>
+                        <input type="text" name="data" value="{{ ($venda->proximoVencimento()!=null)?$venda->proximoVencimento()->data_vencimento: $venda->pagamentos->last()->data_pagamento}}" class="vencimento form-control " disabled>
                     </div>
                     <div class="form-group col-md-3">
                         <label for=""> forma de pagamento</label>
@@ -87,12 +88,21 @@
     })
 
     function dataAtualFormatada() {
-        var data = $('.data_venda').val()
+        var data_venda = $('.data_venda').val()
+        var vencimento = $('.vencimento').val();
+        var dataVendaFormatada =formatadorData(data_venda)
+        var dataVencimentoFormatado = formatadorData(vencimento)
+       
+        $('.data_venda').val(dataVendaFormatada)
+        $('.vencimento').val(dataVencimentoFormatado)
+    }
+    function formatadorData(data){
+        
         var ano = data.split('-')[0];
         var mes = data.split('-')[1];
         var dia = data.split('-')[2];
         dia = dia.substr(0, 2)
         dataF = dia + '/' + mes + '/' + ano
-        $('.data_venda').val(dataF)
+        return dataF
     }
 </script>

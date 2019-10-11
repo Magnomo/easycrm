@@ -142,3 +142,4 @@
     </div>
 </div>
 @endsection
+@yield('js')

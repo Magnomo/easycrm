@@ -89,6 +89,8 @@ class VendaController extends Controller
                         $pagamento->valor = $total;
                         $pagamento->venda()->associate($venda)->save();
                     } else {
+                        if ($request->parcelas > 1)
+                            $pagamento->status = "Em Aberto";
                         $pagamento->valor = $total / $request->parcelas;
                         $pagamento->data_vencimento = $request->vencimento_parcela;
                         $pagamento->venda()->associate($venda)->save();

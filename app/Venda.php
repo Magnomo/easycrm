@@ -50,4 +50,7 @@ class Venda extends Model
     {
         return $this->pagamentos()->where('data_pagamento', null)->count();
     }
+    public function proximoVencimento(){
+        return $this->pagamentos()->where('data_pagamento', null)->first();
+    }
 }
