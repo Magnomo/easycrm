@@ -166,6 +166,17 @@ class VendaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $venda = Venda::findOrFail($id);
+        $venda->delete();
+        return back()->with('success', 'Venda Inativada');
+    }
+    public function inativos()
+    {
+        $flag =0;
+        $vendasInativas = Venda::onlyTrashed()->get();
+        $data =
+            ['title' => 'Vendas Inativas'];
+        
+        return view('venda.index',compact('flag','vendasInativas','data'));
     }
 }

@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Venda extends Model
 {
     //
+    use SoftDeletes;
     protected $table = "venda";
     protected $fillable = ['data_venda', 'total', 'numero_parcelas', 'forma_pagamento', 'status', 'cliente_id', 'usuario_id'];
 
@@ -50,7 +52,8 @@ class Venda extends Model
     {
         return $this->pagamentos()->where('data_pagamento', null)->count();
     }
-    public function proximoVencimento(){
+    public function proximoVencimento()
+    {
         return $this->pagamentos()->where('data_pagamento', null)->first();
     }
 }

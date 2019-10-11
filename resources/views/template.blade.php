@@ -109,8 +109,8 @@ $menu = [
     <div class="d-flex">
         <div id="sidebar">
             <div class="shadow-sm d-flex align-items-center" id="module-info">
-                <i class="material-icons mr-2">{{$moduleInfo['icon']}}</i>
-                <h1>{{$moduleInfo['name']}}</h1>
+               <i class="material-icons mr-2"> <a href="/home" class="card-link">{{$moduleInfo['icon']}}</i>
+                <h1>{{$moduleInfo['name']}}</h1></a>
             </div>
             <nav class="nav flex-column">
                 @foreach ($menu as $item)

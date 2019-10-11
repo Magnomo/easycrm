@@ -39,7 +39,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     /// Rotas de Venda
     Route::get('/venda/{id}/show', 'VendaController@visualizar');
+    Route::get('venda/inativos', 'VendaController@inativos');
     Route::resource('/venda', 'VendaController');
+    
 });
 Route::post('/buscaEmail', 'UsuarioController@buscaEmail');
 Route::post('verificaNomeCategoria', 'CategoriaController@verificaNome');

@@ -1,8 +1,8 @@
 @extends('template')
 @section('title',$data['title'])
 @section('body')
-@if($flag=1)
-<table class="table text-center ">
+@if($flag==1)
+<table class="table text-center table-responsive ">
 
     <thead class="thead-dark">
 
@@ -40,7 +40,7 @@
 
 
             <td>
-                <a href="{{url('/venda/'. $venda->id. '/show')}}" style="height:50px" class="btn btn-primary btn-sm">
+                <a href="{{url('/venda/'. $venda->id. '/show')}}" style="height:50px" class="btn btn-primary btn-sm ">
                     <i class="material-icons">remove_red_eye</i>
                     <br>
 
@@ -58,9 +58,9 @@
                 <form method="POST" action="{{url('venda/'.$venda->id)}}" class="formDelete">
                     @method('delete')
                     @csrf
-                    <button type="submit" style="height:50px" class="btn btn-sm btn-danger btnDeleteUser" data-toggle="modal" data-target="#modal">
+                    <button type="submit" style="height:50px" class="btn btn-sm btn-danger btnDeleteUser remover" data-toggle="modal" data-target="#modal">
 
-                        <i class="material-icons">delete</i><br>
+                        <i class="material-icons">delete</i>
                         <p style="margin-top:-10px"> Remover</p>
                     </button>
                 </form>
@@ -97,10 +97,10 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($vendasInativos as $venda)
+        @foreach($vendasInativas as $venda)
         <tr>
             <td>{{$venda->id}}</td>
-            <td>{{isset($venda->cliente)?$cliente->nome:''}}</td>
+            <td>{{isset($venda->cliente)?$venda->cliente->nome:''}}</td>
             <td>{{$venda->created_at}}</td>
 
             <td>
@@ -143,3 +143,16 @@
 </div>
 @endsection
 @yield('js')
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.remover').click(function(e) {
+            e.preventDefault()
+            
+        })
+        $('.deleteConfirm').click(function(){
+            $('.formDelete').submit();
+        })
+    })
+</script>
