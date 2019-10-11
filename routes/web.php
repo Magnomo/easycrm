@@ -38,8 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/categoria', 'CategoriaController');
 
     /// Rotas de Venda
+    Route::get('/venda/{id}/show', 'VendaController@visualizar');
     Route::resource('/venda', 'VendaController');
 });
 Route::post('/buscaEmail', 'UsuarioController@buscaEmail');
 Route::post('verificaNomeCategoria', 'CategoriaController@verificaNome');
-Route::post('buscaPreco','ProdutoController@buscaPreco');
+Route::post('buscaPreco', 'ProdutoController@buscaPreco');

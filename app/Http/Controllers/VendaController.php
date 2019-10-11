@@ -122,9 +122,15 @@ class VendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function visualizar($id)
     {
-        //
+        $venda = Venda::findOrFail($id);
+        $total = 0;
+
+        foreach ($venda->produtos as $produto)
+            $total += $produto->preco * $produto->pivot->quantidade;
+
+        return view('venda.show', compact('venda', 'total'));
     }
 
     /**

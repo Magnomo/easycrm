@@ -31,7 +31,7 @@ $menu = [
             position: fixed;
             min-width: 210px;
             min-height: 100vh;
-            border-radius:6px;
+            border-radius: 6px;
         }
 
         #sidebar a {
@@ -72,13 +72,13 @@ $menu = [
         #header {
             z-index: 99;
             width: calc(100% - 210px);
-            background:#F1F3FC;
+            background: #F1F3FC;
             position: fixed;
             padding: 0 16px;
             height: 64px;
             color: #5f6368;
         }
-
+       
         #content {
             margin-top: 64px;
             padding: 16px;
@@ -125,12 +125,14 @@ $menu = [
             <div class="shadow-sm d-flex align-items-center justify-content-between" id="header">
                 <div class="d-flex align-items-center">
                     <i class="material-icons mr-2 btn-circle" onclick="toggleMenu()">menu</i>
-                    <span>Menu</span>
+
                 </div>
                 <div class="d-flex align-items-center">
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                     
                         @guest
+                    
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
@@ -150,6 +152,9 @@ $menu = [
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
+                                <a class="dropdown-item" href="#" >
+                                  Configurações
+                                </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
@@ -157,6 +162,8 @@ $menu = [
                             </div>
                         </li>
                         @endguest
+                   
+
                     </ul>
                 </div>
             </div>
@@ -213,10 +220,10 @@ $menu = [
     </div>
     <!-- Bootstrap JS -->
     <script type="text/javascript" src="{{asset('js/sweetalerts.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
     <!-- Toggle Menu Script -->
     <script>
         const Toast = Swal.mixin({

@@ -65,13 +65,19 @@
 
         <div id="inserir"></div>
 
-        <div class="col-sm-12">
 
-            <button type="button" class="btn btn-success add" style="float:right ;margin:10px 60px 0 0">Adicionar</button>
+
+    </div>
+    <div class=" d-flex  " style="margin:30px 0">
+        <div class="mr-auto p-1 ">
+            <button type="button" class="btn btn-success add">Adicionar</button>
         </div>
-        <div class="col-sm-12 " style="display:flex; justify-content-left">
-            <button type="submit" class="btn btn-success">Cadastrar</button>
+        <div class=" p-1  ">
+            <button type="submit" class="btn btn-info" style="margin"><i class="material-icons">
+                    add_shopping_cart
+                </i>Finalizar Venda</button>
         </div>
+
     </div>
 </form>
 @endsection

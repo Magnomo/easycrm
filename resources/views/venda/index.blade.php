@@ -15,7 +15,7 @@
             </a>
         </div>
         <tr>
-           
+
             <th scope="col">Cliente</th>
             <th scope="col">Data</th>
             <th scope="col">Forma de Pagamento</th>
@@ -40,20 +40,28 @@
 
 
             <td>
-                <a href="{{url('/venda/'. $venda->id. '/show')}}" class="btn btn-primary btn-sm"> <i class="material-icons">remove_red_eye</i></a>
+                <a href="{{url('/venda/'. $venda->id. '/show')}}" style="height:50px" class="btn btn-primary btn-sm">
+                    <i class="material-icons">remove_red_eye</i>
+                    <br>
+
+                    <p style="margin-top:-10px"> Visualizar</p>
+                </a>
             </td>
             <td>
-                <a class="btn btn-sm btn-secondary" href="{{url('venda/'.$venda->id .'/edit')}}">
-                    <i class="material-icons">border_color</i>
+                <a class="btn btn-sm btn-secondary" style="height:50px" href="{{url('venda/'.$venda->id .'/edit')}}">
+                    <i class="material-icons">border_color</i><br>
+
+                    <p style="margin-top:-6px"> Editar</p>
                 </a>
             </td>
             <td>
                 <form method="POST" action="{{url('venda/'.$venda->id)}}" class="formDelete">
                     @method('delete')
                     @csrf
-                    <button type="submit" class="btn btn-sm btn-danger btnDeleteUser" data-toggle="modal" data-target="#modal">
+                    <button type="submit" style="height:50px" class="btn btn-sm btn-danger btnDeleteUser" data-toggle="modal" data-target="#modal">
 
-                        <i class="material-icons">delete</i>
+                        <i class="material-icons">delete</i><br>
+                        <p style="margin-top:-10px"> Remover</p>
                     </button>
                 </form>
             </td>
