@@ -96,8 +96,3 @@
 </div>
 @endsection
 @yield('css')
-<style>
-    img {
-        max-width: 100px;
-    }
-</style>

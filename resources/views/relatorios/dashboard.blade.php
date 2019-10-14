@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="card-body ">
-                <p class="text-left">Relatório de estoque</p>
+                <p class="text-left">Relatório de vendas</p>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="card-body ">
-                <p class="text-left">Relatório de estoque</p>
+                <p class="text-left">Relatório de clientes</p>
             </div>
         </div>
     </div>
