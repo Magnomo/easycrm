@@ -157,6 +157,12 @@ class VendaController extends Controller
     {
         //
     }
+    public function restore($id)
+    {
+        $venda = Venda::onlyTrashed()->findOrFail($id);
+        $venda->restore();
+        return back()->with('success', 'Venda' . $venda->id . " restaurada com som sucesso");
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -172,11 +178,11 @@ class VendaController extends Controller
     }
     public function inativos()
     {
-        $flag =0;
+        $flag = 0;
         $vendasInativas = Venda::onlyTrashed()->get();
         $data =
             ['title' => 'Vendas Inativas'];
-        
-        return view('venda.index',compact('flag','vendasInativas','data'));
+
+        return view('venda.index', compact('flag', 'vendasInativas', 'data'));
     }
 }

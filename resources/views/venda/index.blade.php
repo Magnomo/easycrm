@@ -90,18 +90,24 @@
 
         </div>
         <tr>
-            <th scope="col">ID</th>
             <th scope="col">Cliente</th>
-            <th scope="col">data</th>
+            <th scope="col">Data</th>
+            <th scope="col">Forma de Pagamento</th>
+            <th scope="col">Numero de Parcelas</th>
+            <th scope="col">Parcelas Restantes</th>
+            <th>Total</th>
 
         </tr>
     </thead>
     <tbody>
         @foreach($vendasInativas as $venda)
         <tr>
-            <td>{{$venda->id}}</td>
             <td>{{isset($venda->cliente)?$venda->cliente->nome:''}}</td>
             <td>{{$venda->created_at}}</td>
+            <td>{{$venda->formaPagamento()}}</td>
+            <td>{{$venda->numero_parcelas}}</td>
+            <td>{{$venda->parcelasRestantes()}}</td>
+            <td class='total'>{{$venda->total}}</td>
 
             <td>
                 <a href="{{url('venda/'.$venda->id .'/restore')}}"><button class="btn btn-primary btn-sm"> <i class="material-icons">restore_from_trash</i></button></a>
@@ -141,6 +147,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 @yield('js')
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
@@ -149,9 +156,9 @@
     $(document).ready(function() {
         $('.remover').click(function(e) {
             e.preventDefault()
-            
+
         })
-        $('.deleteConfirm').click(function(){
+        $('.deleteConfirm').click(function() {
             $('.formDelete').submit();
         })
     })

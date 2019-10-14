@@ -1,7 +1,7 @@
 @extends('template')
 @section('title', 'Visualizar venda')
 @section('body')
-<div class="card">
+<div class="card shadow p-3 mb-5 rounded">
 
     <div class="card-header bg-info">
         <h3>Venda {{ $venda->id }} </h3>
@@ -11,7 +11,7 @@
             <div class="card-header bg-info">
                 <h5>Dados Da compra</h5>
             </div>
-            <div class="card-body">
+            <div class="card-body shadow p-3 mb-5 rounded">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label> cliente:</label>
@@ -49,7 +49,7 @@
             <h5> Produtos </h5>
         </div>
 
-        <div class="form-row adicionarProduto">
+        <div class="form-row adicionarProduto shadow p-3 mb-5 rounded">
             @foreach($venda->produtos as $key => $produto)
             <div class=" col-md-6">
                 <label>produto:</label>
@@ -80,6 +80,12 @@
 
 </div>
 @endsection
+@yield('css')
+<style>
+    .card-body, .card {
+        background-color:  azure;
+    }
+</style>
 @yield('js')
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 <script>
@@ -90,14 +96,15 @@
     function dataAtualFormatada() {
         var data_venda = $('.data_venda').val()
         var vencimento = $('.vencimento').val();
-        var dataVendaFormatada =formatadorData(data_venda)
+        var dataVendaFormatada = formatadorData(data_venda)
         var dataVencimentoFormatado = formatadorData(vencimento)
-       
+
         $('.data_venda').val(dataVendaFormatada)
         $('.vencimento').val(dataVencimentoFormatado)
     }
-    function formatadorData(data){
-        
+
+    function formatadorData(data) {
+
         var ano = data.split('-')[0];
         var mes = data.split('-')[1];
         var dia = data.split('-')[2];
