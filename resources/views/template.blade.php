@@ -15,17 +15,18 @@ $menu = [
 ];
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>FreeERP @yield('title')</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
+    <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+    <title>Sidebar template</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
     <style>
         @keyframes swing {
             0% {
@@ -77,12 +78,17 @@ $menu = [
             }
         }
 
+        body {
+            font-size: 0.9rem;
+        }
+
         .page-wrapper .sidebar-wrapper,
         .sidebar-wrapper .sidebar-brand>a,
-
-
+        .sidebar-wrapper .sidebar-dropdown>a:after,
+        .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before,
         .sidebar-wrapper ul li a i,
-        ,
+        .page-wrapper .page-content,
+        .sidebar-wrapper .sidebar-search input.search-menu,
         .sidebar-wrapper .sidebar-search .input-group-text,
         .sidebar-wrapper .sidebar-menu ul li a,
         #show-sidebar,
@@ -210,7 +216,7 @@ $menu = [
 
         .sidebar-wrapper .sidebar-header .user-pic img {
             object-fit: cover;
-            height: 100%;
+          
             width: 100%;
         }
 
@@ -279,16 +285,62 @@ $menu = [
             animation: swing ease-in-out 0.5s 1 alternate;
         }
 
+        .sidebar-wrapper .sidebar-menu .sidebar-dropdown>a:after {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f105";
+            font-style: normal;
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-align: center;
+            background: 0 0;
+            position: absolute;
+            right: 15px;
+            top: 14px;
+        }
 
+        .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu ul {
+            padding: 5px 0;
+        }
 
+        .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li {
+            padding-left: 25px;
+            font-size: 13px;
+        }
 
-
+        .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before {
+            content: "\f111";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 400;
+            font-style: normal;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin-right: 10px;
+            font-size: 8px;
+        }
 
         .sidebar-wrapper .sidebar-menu ul li a span.label,
         .sidebar-wrapper .sidebar-menu ul li a span.badge {
             float: right;
             margin-top: 8px;
             margin-left: 5px;
+        }
+
+        .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a .badge,
+        .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a .label {
+            float: right;
+            margin-top: 0px;
+        }
+
+        .sidebar-wrapper .sidebar-menu .sidebar-submenu {
+            display: none;
         }
 
         .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active>a:after {
@@ -448,7 +500,7 @@ $menu = [
         }
 
         .chiller-theme .sidebar-wrapper ul li:hover a i,
-        ,
+        .chiller-theme .sidebar-wrapper .sidebar-dropdown .sidebar-submenu li a:hover:before,
         .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu:focus+span,
         .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
             color: #16c7ff;
@@ -479,227 +531,115 @@ $menu = [
         .chiller-theme .sidebar-footer>a:last-child {
             border-right: none;
         }
-
-        #sidebar {
-            position: fixed;
-            min-width: 210px;
-            min-height: 100vh;
-            border-radius: 6px;
-        }
-
-        #sidebar a {
-            color: #cfd8dc
-        }
-
-        #sidebar a:hover {
-            background: #29353d
-        }
-
-        #sidebar a.active {
-            color: #fff;
-            background: #29353d;
-        }
-
-        #module-info {
-            color: #fff;
-            min-height: 64px;
-            padding-left: 10px;
-        }
-
-        #module-info i {
-            font-size: 36px;
-        }
-
-        #module-info h1 {
-            max-width: 100px;
-            font-size: 18px;
-            margin: 0;
-        }
-
-        #workspace {
-            width: 100%;
-            margin-left: 210px;
-            background: #f3f6f7;
-        }
-
-        #header {
-            z-index: 99;
-            width: calc(100% - 210px);
-            background: #F1F3FC;
-            position: fixed;
-            padding: 0 16px;
-            height: 64px;
-            color: #5f6368;
-        }
-
-        #content {
-            margin-top: 64px;
-            padding: 16px;
-            min-height: calc(100vh - 128px);
-        }
-
-        #footer {
-            color: #5f6368;
-            height: 64px;
-            padding-left: 16px;
-            border-top: 1px solid #cfd8dc;
-        }
-
-        .btn-circle {
-            border-radius: 50%;
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        .btn-circle:hover {
-            background: #ededed;
-        }
     </style>
-    @yield('css')
+
 </head>
 
 <body>
-    <div class="d-flex">
-
-        <div class="page-wrapper chiller-theme toggled">
-            <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-                <i class="fas fa-bars"></i>
-            </a>
-            <nav id="sidebar" class="sidebar-wrapper">
-                <div class="sidebar-content">
-                    <div class="sidebar-brand">
-                        <a href="#">EASY CRM</a>
-                        
+    <div class="page-wrapper chiller-theme toggled">
+        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div class="sidebar-brand">
+                    <a href="#">pro sidebar</a>
+                    <div id="close-sidebar">
+                        <i class="fas fa-times"></i>
                     </div>
-                    <div class="sidebar-header">
-                        <div class="user-pic">
-                            <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture">
-                        </div>
-                        <div class="user-info">
-                            <span class="user-name">{{Auth::user()->usuario->nome}}
-                               
-                            </span>
-                            <span class="user-role">Administrator</span>
-                            <span class="user-status">
-                                <i class="fa fa-circle"></i>
-                                <span>Online</span>
-                            </span>
-                        </div>
+                </div>
+                <div class="sidebar-header">
+                    <div class="user-pic">
+                        <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture">
                     </div>
-
-                    <div class="sidebar-menu">
-                        <ul>
-                            <li class="header-menu">
-                                <span>Geral</span>
-                            </li>
-                            @foreach($menu as $item)
-                            <li class="sidebar-dropdown">
-                                <a href="{{$item['route']}}">
-                                    <i style="width:60px; height:30px" class="material-icons">{{$item['icon']}}</i>
-                                    <span> {{$item['tool']}}</span>
-                                </a>
-                            </li>
-                            @endforeach
-
-                            <li class="header-menu">
-                                <span>Mais opções</span>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-book"></i>
-                                    <span>Documentação</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-calendar"></i>
-                                    <span>Desenvolvedor</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-folder"></i>
-                                    <span>Ajuda</span>
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="user-info">
+                        <span class="user-name">Jhon
+                            <strong>Smith</strong>
+                        </span>
+                        <span class="user-role">Administrator</span>
+                        <span class="user-status">
+                            <i class="fa fa-circle"></i>
+                            <span>Online</span>
+                        </span>
                     </div>
-                    <!-- sidebar-menu  -->
                 </div>
-                <!-- sidebar-content  -->
-                <div class="sidebar-footer">
-                    <a href="#">
-                        <i class="material-icons">
-                            notification_important
-                        </i>
-                        <span class="badge badge-pill badge-warning notification">3</span>
-                    </a>
-                    <a href="#">
-                        <i class="material-icons">
-                            mail
-                        </i>
-                        <span class="badge badge-pill badge-success notification">7</span>
-                    </a>
-                    <a href="#">
-                        <i class="material-icons">
-                            settings_applications
-                        </i>
-                        <span class="badge-sonar"></span>
-                    </a>
-                    <a href="#">
-                        <i class="fa fa-power-off"></i>
-                    </a>
-                </div>
-            </nav>
-            <!-- sidebar-wrapper  -->
-
-            <!-- page-content" -->
-        </div>
-        <div class="d-flex flex-column" id="workspace">
-            <div class="shadow-sm d-flex align-items-center justify-content-between" id="header">
-                <div class="d-flex align-items-center">
-                    <i class="material-icons mr-2 btn-circle" style="margin-left:30px" onclick="toggleMenu()">menu</i>
-
-
-                </div>
-                <div class="d-flex align-items-center">
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-
-                        @guest
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
-                        @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    Configurações
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
+                <!-- sidebar-header  -->
+                <div class="sidebar-search">
+                    <div>
+                        <div class="input-group">
+                            <input type="text" class="form-control search-menu" placeholder="Search...">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- sidebar-search  -->
+                <div class="sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>General</span>
                         </li>
-                        @endguest
+                        @foreach($menu as $item)
+                        <li class="sidebar-dropdown">
+                            <a href="{{$item['route']}}">
+                                <i style="width:60px; height:30px" class="material-icons">{{$item['icon']}}</i>
+                                <span> {{$item['tool']}}</span>
+                            </a>
+                        </li>
+                        @endforeach
+                        <li class="header-menu">
+                            <span>Extra</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-book"></i>
+                                <span>Documentation</span>
+                                <span class="badge badge-pill badge-primary">Beta</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-calendar"></i>
+                                <span>Calendar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-folder"></i>
+                                <span>Examples</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
+                <!-- sidebar-menu  -->
             </div>
+            <!-- sidebar-content  -->
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fa fa-bell"></i>
+                    <span class="badge badge-pill badge-warning notification">3</span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-envelope"></i>
+                    <span class="badge badge-pill badge-success notification">7</span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-cog"></i>
+                    <span class="badge-sonar"></span>
+                </a>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    <i class="fa fa-power-off"> </i>
+                </a>
+
+            </div>
+        </nav>
+        <!-- sidebar-wrapper  -->
+        <div class="d-flex flex-column" id="workspace">
+
             <div id="content">
                 <div class="row">
                     @if (Session::has('success'))
@@ -726,68 +666,78 @@ $menu = [
                     </script>
                     @endif
                 </div>
-                <div class="container">
+                <div class="container-fluid">
 
-                    <div class="card text-center">
 
-                        <div class="card-header">
-                            <h5 style="font-size:25px;">@yield('title')</h5>
-                        </div>
-                        <div class="card-body">
 
-                            @yield('body')
-                        </div>
-                        @if (trim($__env->yieldContent('footer')))
-                        <div class="card-footer">
-                            @yield('footer')
-                        </div>
-                        @endif
-                    </div>
+                    <main class="page-content d-flex-justify-content-center">
+                        @yield('body')
+
+                    </main>
+                    <!-- page-content" -->
                 </div>
-
-            </div>
-            <div class="d-flex align-items-center" id="footer">
-                Todos direitos autorais Diego Magno &copy
             </div>
         </div>
     </div>
-    <!-- Bootstrap JS -->
+    <!-- page-wrapper -->
     <script type="text/javascript" src="{{asset('js/sweetalerts.min.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-    <!-- Toggle Menu Script -->
-    <script>
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 5000
+
+</body>
+<script>
+    // Shwet alerts
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 5000
+    });
+
+    function alertMsg(msg, type) {
+        Toast.fire({
+            type: type,
+            title: msg
+        })
+    }
+    jQuery(function($) {
+
+        $(".sidebar-dropdown > a").click(function() {
+            $(".sidebar-submenu").slideUp(200);
+            if (
+                $(this)
+                .parent()
+                .hasClass("active")
+            ) {
+                $(".sidebar-dropdown").removeClass("active");
+                $(this)
+                    .parent()
+                    .removeClass("active");
+            } else {
+                $(".sidebar-dropdown").removeClass("active");
+                $(this)
+                    .next(".sidebar-submenu")
+                    .slideDown(200);
+                $(this)
+                    .parent()
+                    .addClass("active");
+            }
         });
 
-        function alertMsg(msg, type) {
-            Toast.fire({
-                type: type,
-                title: msg
-            })
-        }
+        $("#close-sidebar").click(function() {
+            $(".page-wrapper").removeClass("toggled");
+        });
+        $("#show-sidebar").click(function() {
+            $(".page-wrapper").addClass("toggled");
+        });
 
-        function toggleMenu() {
-            var sidebar = document.getElementById('sidebar');
-            var workspace = document.getElementById('workspace');
-            var header = document.getElementById('header');
-            var displaySidebar = sidebar.style.display === "none" ? "block" : "none";
-            var marginLeftWorkspace = workspace.style.marginLeft === "0px" ? "210px" : "0px";
-            var widthHeader = header.style.width === "100%" ? "calc(100% - 210px)" : "100%";
-            sidebar.style.display = displaySidebar;
-            workspace.style.marginLeft = marginLeftWorkspace;
-            header.style.width = widthHeader;
-        }
 
- 
-    </script>
-    @yield('js')
-</body>
+
+
+    });
+</script>
+
 
 </html>

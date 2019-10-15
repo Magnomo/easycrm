@@ -2,11 +2,11 @@
 @section('title',$data['title'])
 @section('body')
 @if($flag==1)
-<table class="table text-center table-responsive ">
+<table class="table text-center  ">
 
     <thead class="thead-dark">
 
-        <div class="col-12 text-right mb-4">
+        <div class="col-lg-12 col-md-12 text-right mb-4">
             <a class="btn btn-success btn-sm" href="{{url('venda/create')}}">
                 <i class="material-icons" style="vertical-align:middle; font-size:25px;">note_add</i>Adicionar
             </a>
