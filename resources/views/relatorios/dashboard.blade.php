@@ -10,7 +10,7 @@
             </div>
         </div>
 <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-12 shadow p-3 mb-5 rounded">
+    <div class="col-lg-3 col-md-4 col-sm-12 shadow p-3 mb-5 rounded">
 
         <div class="card">
 
@@ -33,7 +33,7 @@
     </div>
     <!-- -->
     
-    <div class="col-lg-4 col-md-6 col-sm-12 shadow p-3 mb-5 rounded">
+    <div class="col-lg-3 col-md-4 shadow p-3 mb-5 rounded">
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -52,7 +52,26 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 shadow p-3 mb-5 rounded">
+    <div class="col-lg-3 col-md-4 shadow p-3 mb-5 rounded">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-5 col-sm-12 col-md-5">
+                        <img src="{!! asset('imgs/user-icon.png') !!}" alt="" height="72px" class="image image-responsive">
+
+                    </div>
+                    <div class="col-lg-7 col-md-5 col-sm-12">
+                        <p class="card-text"> Text 1</p>
+                        <h3 class="card-title">Text 2</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer ">
+                <p class="text-left">Relatório de Usuários</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-4 shadow p-3 mb-5 rounded">
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -77,7 +96,7 @@
 
 <div class="row">
 
-    <div class="col=sm-12 col-md-6 col-lg-4 shadow p-3 mb-5 rounded" >
+    <div class="col-sm-12 col-md-6  col-lg-4 shadow p-3 mb-5 rounded" >
         <div class="card" >
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0-rc.1/Chart.min.js" integrity="sha256-qJdfkTrvMTvYJwkeb1z9a+rOErkiTyqpDz5vi7lZ7MQ=" crossorigin="anonymous"></script>
 
@@ -89,7 +108,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4 shadow p-3 mb-5 rounded">
+    <div class="col-sm-12 col-md-6  col-lg-4 shadow p-3 mb-5 rounded">
         <div class="card" >
      
             <canvas id="myLineChart" ></canvas>
@@ -100,7 +119,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-sm-12 col-md-6  col-lg-4">
         <div class="card" >
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0-rc.1/Chart.min.js" integrity="sha256-qJdfkTrvMTvYJwkeb1z9a+rOErkiTyqpDz5vi7lZ7MQ=" crossorigin="anonymous"></script>
 
@@ -115,13 +134,13 @@
  
 </div>
 <div class="row ">
-    <div class="col-sm-12 col-md-6 col-lg-6 shadow p-3 mb-5 rounded">
+    <div class="col-sm-12 col-md-12 col-lg-6 shadow p-3 mb-5 rounded">
         <div class="card">
             <div class="card-header">
                 <h3 class="h3"> Tarefas e Avisos</h3>
             </div>
             <div class="card-body">
-                <table class="table text-center table-striped">
+                <table class="table text-center table-striped border    ">
                     <thead class="thead-dark"> 
                         <tr>
                             <th>Marcar</th>
@@ -162,13 +181,13 @@
             </div>
         </div>
     </div>
-    <div class=" col-sm-12 col-md-6 col-lg-6 shadow p-3 mb-5 rounded">
+    <div class=" col-sm-12 col-md-12 col-lg-6 shadow p-3 mb-5 rounded">
         <div class="card">
             <div class="card-header">
                 <h3 class="h3">Relatório de funcionários</h3>
             </div>
             <div class="card-body">
-                <table class="table text-center table-striped">
+                <table class="table text-center table-striped border ">
                     <thead class="thead-light"> 
                         <tr>
                             <th>Nome</th>
@@ -183,23 +202,11 @@
                             <td> Analísta de Sistemas     </td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox"></td>
-                            <td>Lorem ipsum dolor sit  elit. Sed, debitis praesentium. Impedit, nisi dolor est nemo </td>
-                            <td  class="btn-group" role="group" aria-label="...">
-                              
-                                <a   href="#" class="btn "><i class="far fa-edit"></i></a>
-                                <a   href="#" class="btn "><i class="far fa-trash-alt" style="color:red"></i></a>
-                            </td>
+                            <td>Maria Joana</td>
+                            <td>$ 4.738</td>
+                            <td> Programadaora php junior     </td>
                         </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>Lorem ipsum dolor sit  elit. Sed, debitis praesentium. Impedit, nisi dolor est nemo </td>
-                            <td  class="btn-group" role="group" aria-label="...">
-                              
-                                <a   href="#" class="btn "><i class="far fa-edit"></i></a>
-                                <a   href="#" class="btn "><i class="far fa-trash-alt" style="color:red"></i></a>
-                            </td>
-                        </tr>
+                       
                     </tbody>
                 </table>
             </div>
@@ -316,7 +323,7 @@ function barChart(){
         data: {
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
             datasets: [{
-                label: '# of Votes',
+                label: ' Ultimos 6 meses',
                 data: [12, 19, 3, 5, 2, 3],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.9)',

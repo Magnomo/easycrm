@@ -1,17 +1,17 @@
 <?php
 $moduleInfo = [
-    'icon' => 'store',
+    'icon' => 'fas fa-store',
     'name' => 'Easycrm',
 ];
 $menu = [
-    ['icon' => 'shopping_basket', 'tool' => 'Produtos', 'route' => url('/produto')],
-    ['icon' => 'menu', 'tool' => 'Categorias', 'route' => url('/categoria')],
-    ['icon' => 'person', 'tool' => 'Usuários', 'route' => url('/usuario')],
-    ['icon' => 'person', 'tool' => 'Clientes', 'route' => url('/cliente')],
-    ['icon' => 'shopping_cart', 'tool' => 'Vendas   ', 'route' => url('/venda')],
-    ['icon' => 'store', 'tool' => 'Estoque', 'route' => url('/estoque')],
-    ['icon' => 'pie_chart', 'tool' => 'Relatórios', 'route' => url('/relatorio')],
-    ['icon' => 'settings_applications', 'tool' => 'Configurações', 'route' => url('/settings')],
+    ['icon' => 'fas fa-cart-plus', 'tool' => 'Produtos', 'route' => url('/produto')],
+    ['icon' => 'fas fa-bars', 'tool' => 'Categorias', 'route' => url('/categoria')],
+    ['icon' => 'fas fa-user', 'tool' => 'Usuários', 'route' => url('/usuario')],
+    ['icon' => 'fas fa-users', 'tool' => 'Clientes', 'route' => url('/cliente')],
+    ['icon' => 'fas fa-credit-card', 'tool' => 'Vendas   ', 'route' => url('/venda')],
+    ['icon' => 'fas fa-database', 'tool' => 'Estoque', 'route' => url('/estoque')],
+    ['icon' => 'fas fa-chart-pie', 'tool' => 'Relatórios', 'route' => url('/relatorio')],
+    ['icon' => 'fas fa-cogs', 'tool' => 'Configurações', 'route' => url('/settings')],
 ];
 ?>
 <!DOCTYPE html>
@@ -587,7 +587,8 @@ $menu = [
                         @foreach($menu as $item)
                         <li class="sidebar-dropdown">
                             <a href="{{$item['route']}}">
-                                <i style="width:60px; height:30px" class="material-icons">{{$item['icon']}}</i>
+                               <i class="{{$item['icon']}}"></i>
+
                                 <span> {{$item['tool']}}</span>
                             </a>
                         </li>
