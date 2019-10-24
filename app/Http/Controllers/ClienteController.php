@@ -21,7 +21,7 @@ class ClienteController extends Controller
     {
         //
         $flag = 1;
-        $clientes = Cliente::paginate(10);
+        $clientes = Cliente::paginate(5);
         return view('cliente.index', compact('clientes', 'flag'));
     }
 

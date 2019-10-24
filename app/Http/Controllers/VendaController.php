@@ -20,7 +20,7 @@ class VendaController extends Controller
         $flag = 1;
         $data =
             ['title' => 'Vendas'];
-        $vendas = Venda::paginate(10);
+        $vendas = Venda::paginate(5);
         //
         return view('venda.index', compact('data', 'vendas', 'flag'));
     }

@@ -14,7 +14,7 @@ class Venda extends Model
 
     public function cliente()
     {
-        return $this->belongsTo('App\Cliente');
+        return $this->belongsTo('App\Cliente')->withTrashed();
     }
     public function produtos()
     {

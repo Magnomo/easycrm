@@ -103,7 +103,7 @@
         <div class="col-md-6 col-lg-2 col-sm-12 col_cod_pais">
             <label for="cod_pais">Cód do país: </label>
 
-            <input type="text" class="form-control cod_pais" required id="cod_pais" value="{{isset($cliente)&&($cliente->telefones!=null)?$cliente->telefones->last()->cod_pais :''}}" name="cod_pais">
+            <input type="text" class="form-control cod_pais" required id="cod_pais" value="{{isset($cliente)&&($cliente->telefones!=null)?$cliente->telefones->last()->cod_pais :'55'}}" name="cod_pais">
 
         </div>
         <div class="col-md-6 col-lg-2 col-sm-12 col_ddd">
