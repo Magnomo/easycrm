@@ -2,14 +2,31 @@
 
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
-html,body{
+body{
 background-image: url('../imgs/bg.jpg');
 background-size: cover;
 background-repeat: no-repeat;
-height: 100%;
+
 font-family: 'Numans', sans-serif;
 }
+nav{
 
+}
+.nav a{
+    
+   
+    
+    text-decoration: none;
+    font-family: 'Numans', sans-serif;
+    color:white;
+    margin:10px
+
+}
+.nav a:hover{
+    text-decoration: underline;
+    color: #696969;
+    
+}
 .container{
 height: 100%;
 align-content: center;
