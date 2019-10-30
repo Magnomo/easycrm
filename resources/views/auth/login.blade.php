@@ -21,14 +21,16 @@
 </head>
 
 <body>
-	<div class="nav top-right links d-flex justify-content-center">
+	<!-- <div class="nav top-right links d-flex justify-content-center">
 		<a href="/">Incio</a>
 		<a href="{{route('register')}}"> Cadastro</a>
 
-	</div>
-	<div class="container ">
-		<div class="d-flex justify-content-center   h-100">
-			<div class="card">
+	</div> -->
+	<div class="container">
+
+		<div class="row" style="min-height: 100vh">
+			<div class="col d-flex justify-content-center align-items-center">
+			<div class="card ">
 				<div class="card-header">
 					<h3>Sign In</h3>
 					<div class="d-flex justify-content-end social_icon">
@@ -85,7 +87,11 @@
 					</div>
 				</div>
 			</div>
+			</div>
 		</div>
+		
+			
+		
 	</div>
 	<script type="text/javascript" src="{{asset('js/sweetalerts.min.js')}}"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>

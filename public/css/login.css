@@ -4,27 +4,18 @@
 
 body{
 background-image: url('../imgs/bg.jpg');
-background-size: cover;
+    background-size: cover;
+    height: 100%;
 background-repeat: no-repeat;
+
 
 font-family: 'Numans', sans-serif;
 }
-nav{
 
-}
-.nav a{
-    
-   
-    
-    text-decoration: none;
-    font-family: 'Numans', sans-serif;
-    color:white;
-    margin:10px
-
-}
 .nav a:hover{
     text-decoration: underline;
     color: #696969;
+
     
 }
 .container{
@@ -34,10 +25,9 @@ align-content: center;
 
 .card{
 height: 370px;
-margin-top: auto;
-margin-bottom: auto;
 width: 400px;
-background-color: rgba(175, 175, 175, 0.9) !important;
+background-color: rgba(175, 175, 175, 1) !important;
+    
 }
 
 .social_icon span{
