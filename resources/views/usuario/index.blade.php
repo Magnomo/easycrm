@@ -29,9 +29,7 @@
             <td>{{$usuario->nome}}</td>
             <td>{{$usuario->user->email}}</td>
 
-            <td>
-                <a href="#"><button class="btn btn-primary btn-sm"> <i class="material-icons">list</i></button></a>
-            </td>
+            
             <td>
                 <a class="btn btn-sm btn-info" href="{{url('usuario/'.$usuario->id .'/edit')}}">
                     <i class="material-icons">border_color</i>

@@ -32,6 +32,7 @@ class UsuarioController extends Controller
         $data = [
             'url' => url('usuario'),
             'niveis' => Nivel::all(),
+            'title'=>'Cadastro de usuários'
         ];
         //  dd($usuario);
         return view('usuario.form', compact('data'));

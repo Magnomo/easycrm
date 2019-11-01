@@ -22,13 +22,14 @@
 
                     </div>
                     <div class="col-lg-7 col-md-5 col-sm-12">
-                        <p class="card-text"> Text 1</p>
-                        <h3 class="card-title">Text 2</h3>
+                    <h3 class="card-title">Vendas</h3>
+                        <p class="card-text"> Relatório de vendas </p>
+                       
                     </div>
                 </div>
             </div>
-            <div class="card-footer ">
-                <p class="text-left">Relatório de vendas</p>
+            <div class="card-footer bg-white ">
+                <p class="text-center"> <a href="{{url('relatorio/vendas')}}"> visualizar</a>  </p>
             </div>
         </div>
     </div>
@@ -37,17 +38,18 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-5 col-sm-12 col-md-5">
-                        <img src="{!! asset('imgs/user-icon.png') !!}" alt="" height="72px" class="image image-responsive">
+                        <img src="{!! asset('imgs/estoque-icon.png') !!}" alt="" height="72px" class="image image-responsive">
 
                     </div>
                     <div class="col-lg-7 col-md-5 col-sm-12">
-                        <p class="card-text"> Text 1</p>
-                        <h3 class="card-title">Text 2</h3>
+                    <h3 class="card-title">Estoque</h3>
+                    <p class="card-text"> Relatório de estoque</p>
+
                     </div>
                 </div>
             </div>
-            <div class="card-footer ">
-                <p class="text-left">Relatório de Usuários</p>
+            <div class="card-footer bg-white  ">
+                <p class="text-center"><a href="#">visualizar</a></p>
             </div>
         </div>
     </div>
@@ -56,17 +58,18 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-5 col-sm-12 col-md-5">
-                        <img src="{!! asset('imgs/user-icon.png') !!}" alt="" height="72px" class="image image-responsive">
+                        <img src="{!! asset('imgs/client-icon.png') !!}" alt="" height="72px" class="image image-responsive">
 
                     </div>
                     <div class="col-lg-7 col-md-5 col-sm-12">
-                        <p class="card-text"> Text 1</p>
-                        <h3 class="card-title">Text 2</h3>
+                        
+                        <h3 class="card-title">Clientes</h3>
+                        <p class="card-text">relatório de clientes</p>
                     </div>
                 </div>
             </div>
-            <div class="card-footer ">
-                <p class="text-left">Relatório de Usuários</p>
+            <div class="card-footer bg-white ">
+                <p class="text-center"><a href="#" > visualizar</a></p>
             </div>
         </div>
     </div>
@@ -260,7 +263,7 @@
                 data: {
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
                     datasets: [{
-                        label: 'My First dataset',
+                        label: 'Clientes',
                         backgroundColor: 'rgb(255, 99, 132)',
                         borderColor: 'rgb(255, 99, 132)',
                         data: [0, 10, 15, 12, 18, 21, 35]
@@ -305,7 +308,7 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
                     datasets: [{
                         label: ' Ultimos 6 meses',
                         data: [12, 19, 3, 5, 2, 3],

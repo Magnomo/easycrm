@@ -33,9 +33,7 @@
             <td>{{$produto->cor}}</td>
             <td>{{$produto->tamanho}}</td>
             
-            <td>
-                <a href="#"><button class="btn btn-primary btn-sm"> <i class="material-icons">list</i></button></a>
-            </td>
+          
             <td>
                 <a class="btn btn-sm btn-info" href="{{url('produto/'.$produto->id .'/edit')}}">
                     <i class="material-icons">border_color</i>

@@ -30,7 +30,7 @@
 
 		<div class="row" style="min-height: 100vh">
 			<div class="col d-flex justify-content-center align-items-center">
-			<div class="card ">
+			<div class="card shadow p-3 mb-5  rounded">
 				<div class="card-header">
 					<h3>Sign In</h3>
 					<div class="d-flex justify-content-end social_icon">

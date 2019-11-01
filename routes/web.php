@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
+    //Rotas de Relatórios
+    Route::prefix('relatorio')->group(function () {
+        route::get('/vendas', 'RelatorioController@vendaIndex');
+    });
     // Rotas de usuário
     Route::get('/usuario/inativos', 'UsuarioController@inativos');
     Route::get('/usuario/{id}/restore', 'UsuarioController@restore');
@@ -44,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/venda', 'VendaController');
 
     //Rotas relatórios
-    Route::get('/relatorio','RelatorioController@index');
+    Route::get('/relatorio', 'RelatorioController@index');
 });
 Route::post('/buscaEmail', 'UsuarioController@buscaEmail');
 Route::post('verificaNomeCategoria', 'CategoriaController@verificaNome');

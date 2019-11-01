@@ -17,7 +17,8 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
-            <th colspan=2 >Ações</th>
+            <th >Editar</th>
+            <th >Remover</th>
         
         </tr>
     </thead>

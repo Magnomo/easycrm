@@ -1,85 +1,98 @@
 @extends('template')
 @section('title',$data['title'])
 @section('body')
-<form method="POST" action="{{ $data['url'] }}">
-    @if(isset($data['venda']))
-    @method('PUT')
-    @endif
-    @csrf
-    <div class="form-group col-md-12">
-        <label>Escolha o cliente:</label>
-        <select class="form-control" name="cliente">
-            <option value="">Selecione uma opção</option>
-            @foreach($data['clientes'] as $cliente)
-            <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
-            @endforeach
-        </select>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <label>Forma de Pagamento:</label>
-            <select class="form-control tipo_pagamento" name="forma_pagamento">
-                <option value='0'>Selecione uma opção</option>
-                <option value="1">Crédito</option>
-                <option value="2">Débito</option>
-                <option value="3">Dinheiro</option>
-                <option value="4">Outro</option>
-            </select>
-        </div>
+<div class="container">
+    <div class="row h-100 " style="min-height:100vh">
+        <div class="col-12   d-flex justify-content-center align-items-center">
+            <div class="card w-100 shadow p-3 mb-5  rounded">
+                <div class="card-header bg-white text-center">
+                    <h1>{{$data['title']}}</h1>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ $data['url'] }}">
+                        @if(isset($data['venda']))
+                        @method('PUT')
+                        @endif
+                        @csrf
+                        <div class="form-group col-md-12">
+                            <label>Escolha o cliente:</label>
+                            <select class="form-control" name="cliente">
+                                <option value="">Selecione uma opção</option>
+                                @foreach($data['clientes'] as $cliente)
+                                <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label>Forma de Pagamento:</label>
+                                <select class="form-control tipo_pagamento" name="forma_pagamento">
+                                    <option value='0'>Selecione uma opção</option>
+                                    <option value="1">Crédito</option>
+                                    <option value="2">Débito</option>
+                                    <option value="3">Dinheiro</option>
+                                    <option value="4">Outro</option>
+                                </select>
+                            </div>
 
-        <div class="col-md-2 form-group parcelas">
-            <label for="parcelas">Nª Parcelas</label>
-            <input type="number" class="form-control" name="parcelas" placeholder="Ex: 3">
-        </div>
-        <div class="vencimento_parcela form-group col-md-4">
-            <label for=".vencimento_parcela">Vencimento</label>
-            <input type="date" class="form-control" name="vencimento_parcela">
-        </div>
+                            <div class="col-md-2 form-group parcelas">
+                                <label for="parcelas">Nª Parcelas</label>
+                                <input type="number" class="form-control" name="parcelas" placeholder="Ex: 3">
+                            </div>
+                            <div class="vencimento_parcela form-group col-md-4">
+                                <label for=".vencimento_parcela">Vencimento</label>
+                                <input type="date" class="form-control" name="vencimento_parcela">
+                            </div>
 
 
-    </div>
-    <div class='adicionarProduto'>
-        <div class="card-header text-center">Adicionar Produtos</div>
-        <div class="form-row adicionarProduto">
-            <div class=" col-md-4">
-                <label>Escolha os produtos:</label>
-                <select class="custom-select produto" name="produtos[0]">
-                    <option>Selecione</option>
-                    @foreach($data['produtos'] as $produto)
-                    <option value="{{$produto->id}}">{{$produto->nome}}</option>
-                    @endforeach
-                </select>
+                        </div>
+                        <div class='adicionarProduto'>
+                            <div class="card-header text-center">Adicionar Produtos</div>
+                            <div class="form-row adicionarProduto">
+                                <div class=" col-md-4">
+                                    <label>Escolha os produtos:</label>
+                                    <select class="custom-select produto" name="produtos[0]">
+                                        <option>Selecione</option>
+                                        @foreach($data['produtos'] as $produto)
+                                        <option value="{{$produto->id}}">{{$produto->nome}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class=" col-md-3">
+                                    <label>Quantidade:</label>
+                                    <input type="text" name="quantidades[0]" required class="form-control quantidade" placeholder="Quantidade">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Preço:</label>
+                                    <input type="text" name="valor[0]" class="form-control preco">
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-danger removerProduto" style=" display:flex; justify-content:left;  margin-top:30px">Remover</button>
+                                </div>
+                            </div>
+
+                            <div id="inserir"></div>
+
+
+
+                        </div>
+                        <div class=" d-flex  " style="margin:30px 0">
+                            <div class="mr-auto p-1 ">
+                                <button type="button" class="btn btn-success add">Adicionar</button>
+                            </div>
+                            <div class=" p-1  ">
+                                <button type="submit" class="btn btn-info" style="margin"><i class="material-icons">
+                                        add_shopping_cart
+                                    </i>Finalizar Venda</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class=" col-md-3">
-                <label>Quantidade:</label>
-                <input type="text" name="quantidades[0]" required class="form-control quantidade" placeholder="Quantidade">
-            </div>
-            <div class="col-md-3">
-                <label>Preço:</label>
-                <input type="text" name="valor[0]" class="form-control preco">
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-danger removerProduto" style=" display:flex; justify-content:left;  margin-top:30px">Remover</button>
-            </div>
         </div>
-
-        <div id="inserir"></div>
-
-
-
     </div>
-    <div class=" d-flex  " style="margin:30px 0">
-        <div class="mr-auto p-1 ">
-            <button type="button" class="btn btn-success add">Adicionar</button>
-        </div>
-        <div class=" p-1  ">
-            <button type="submit" class="btn btn-info" style="margin"><i class="material-icons">
-                    add_shopping_cart
-                </i>Finalizar Venda</button>
-        </div>
-
-    </div>
-</form>
+</div>
 @endsection
 @yield('js')
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>

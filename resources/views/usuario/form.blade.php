@@ -1,68 +1,80 @@
 @extends('template')
 @section('title','Editar Usuario')
 @section('body')
-<form method="POST" action="{{$data['url']}}" class="formulario">
-    @if(isset($usuario))
-    @method('PUT')
-    @endif
-    @csrf
+<div class="container">
+    <div class="row h-100 " style="min-height:100vh">
+        <div class="col-12   d-flex justify-content-center align-items-center">
+            <div class="card w-100 shadow p-3 mb-5  rounded">
+                <div class="card-header bg-white text-center">
+                    <h1>{{$data['title']}}</h1>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{$data['url']}}" class="formulario  w-100">
+                        @if(isset($usuario))
+                        @method('PUT')
+                        @endif
+                        @csrf
+                        <p class="feedback-message alert"></p>
+                        <input type="hidden" class="hidden" value="{{isset($usuario)?$usuario->id:'0'}}">
 
-    <p class="feedback-message alert"></p>
-    <input type="hidden" class="hidden" value="{{isset($usuario)?$usuario->id:'0'}}">
+                        <div class="form-group row">
+                            <label for="nome" class="col-md-4 col-form-label text-md-right">Nome</label>
 
-    <div class="form-group row">
-        <label for="nome" class="col-md-4 col-form-label text-md-right">Nome</label>
+                            <div class="col-md-6">
+                                <input id="nome" type="text" class="form-control nome" name="nome" value="{{ (isset($usuario))?$usuario->nome:old('name') }}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control email " name="email" value="{{ (isset($usuario))?$usuario->user->email:old('email') }}" required>
+                            </div>
+                        </div>
 
-        <div class="col-md-6">
-            <input id="nome" type="text" class="form-control nome" name="nome" value="{{ (isset($usuario))?$usuario->nome:old('name') }}" required>
+                        @if(!isset($usuario))
+                        <div class="form-group row">
+                            <label for="senha" class="col-md-4 col-form-label text-md-right">Senha</label>
+                            <div class="col-md-6">
+                                <input id="senha" type="password" class="form-control senha " name="senha" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="cSenha" class="col-md-4 col-form-label text-md-right">Confirmar Senha</label>
+                            <div class="col-md-6">
+                                <input id="cSenha" type="password" class="form-control cSenha" name="cSenha" required>
+
+                            </div>
+                        </div>
+
+                        @endif
+                        <div class="form-group row">
+                            <label for="tipo_nivel" class="col-md-4 col-form-label text-md-right">Nivel</label>
+                            <div class="col-md-6">
+                                <select name="nivel_id" id="" class="custom-select nivel">
+                                    <option value="">Selecione</option>
+                                    @foreach($data['niveis'] as $nivel)
+                                    <option value="{{$nivel->id}}" {{isset($usuario)&& ($usuario->nivel_id ==$nivel->id)?'selected':''}}>{{$nivel->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary enviar">
+                                    {{(isset($usuario))?'Atualizar':'Cadastrar' }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-group row">
-        <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
-        <div class="col-md-6">
-            <input id="email" type="email" class="form-control email " name="email" value="{{ (isset($usuario))?$usuario->user->email:old('email') }}" required>
-        </div>
-    </div>
-
-    @if(!isset($usuario))
-    <div class="form-group row">
-        <label for="senha" class="col-md-4 col-form-label text-md-right">Senha</label>
-        <div class="col-md-6">
-            <input id="senha" type="password" class="form-control senha " name="senha" required>
-
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="cSenha" class="col-md-4 col-form-label text-md-right">Confirmar Senha</label>
-        <div class="col-md-6">
-            <input id="cSenha" type="password" class="form-control cSenha" name="cSenha" required>
-
-        </div>
-    </div>
-
-    @endif
-    <div class="form-group row">
-        <label for="tipo_nivel" class="col-md-4 col-form-label text-md-right">Nivel</label>
-        <div class="col-md-6">
-            <select name="nivel_id" id="" class="custom-select nivel">
-                <option value="">Selecione</option>
-                @foreach($data['niveis'] as $nivel)
-                <option value="{{$nivel->id}}" {{isset($usuario)&& ($usuario->nivel_id ==$nivel->id)?'selected':''}}>{{$nivel->nome}}</option>
-                @endforeach
-            </select>
-        </div>
-    </div>
-
-
-
-    <div class="form-group row mb-0">
-        <div class="col-md-6 offset-md-4">
-            <button type="submit" class="btn btn-primary enviar">
-                {{(isset($usuario))?'Atualizar': __('Register') }}
-            </button>
-        </div>
-    </div>
-</form>
+</div>
 
 @endsection
 @yield('js')

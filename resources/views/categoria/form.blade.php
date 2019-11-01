@@ -1,31 +1,43 @@
 @extends('template')
 @section('title',$data['title'])
 @section('body')
-<form method="POST" action="{{$data['url']}}" class="formulario">
-    @if(isset($categoria))
-    @method('PUT')
-    @endif
-    @csrf
-    <input type="hidden" class="categoria-id" name="categoriaId" id="categoria-id" value="{{isset($categoria)?$categoria->id:0}}">
-    <div class="form-group row">
-        <label for="nome" class="col-md-4 col-form-label text-md-right">Nome</label>
+<div class="container">
+    <div class="row h-100 " style="min-height:100vh">
+        <div class="col-12   d-flex justify-content-center align-items-center">
+            <div class="card w-100 shadow p-3 mb-5  rounded">
+                <div class="card-header bg-white text-center">
+                    <h1>{{$data['title']}}</h1>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{$data['url']}}" class="formulario">
+                        @if(isset($categoria))
+                        @method('PUT')
+                        @endif
+                        @csrf
+                        <input type="hidden" class="categoria-id" name="categoriaId" id="categoria-id" value="{{isset($categoria)?$categoria->id:0}}">
+                        <div class="form-group row">
+                            <label for="nome" class="col-md-4 col-form-label text-md-right">Nome</label>
 
-        <div class="col-md-6">
-            <input id="nome" type="text" class="form-control nome" name="nome" value="{{ (isset($categoria))?$categoria->nome:old('nome') }}" required>
-            <img src="https://flevix.com/wp-content/uploads/2019/07/Ring-Preloader.gif" alt="" class="img-loader" height="80px">
-            <p class=" alert mensagem-nome" id="mensagem-nome">
+                            <div class="col-md-6">
+                                <input id="nome" type="text" class="form-control nome" name="nome" value="{{ (isset($categoria))?$categoria->nome:old('nome') }}" required>
+                                <img src="https://flevix.com/wp-content/uploads/2019/07/Ring-Preloader.gif" alt="" class="img-loader" height="80px">
+                                <p class=" alert mensagem-nome" id="mensagem-nome">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary enviar">
+                                    {{$data['button']}}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="form-group row mb-0">
-        <div class="col-md-6 offset-md-4">
-            <button type="submit" class="btn btn-primary enviar">
-                {{$data['button']}}
-            </button>
-        </div>
-    </div>
-</form>
-
+</div>
 @endsection
 @yield('js')
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
