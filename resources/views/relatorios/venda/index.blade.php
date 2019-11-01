@@ -4,15 +4,14 @@
     <div class="row h-100 " style="min-height:100vh">
         <div class="col-12   d-flex justify-content-center align-items-top">
             <div class="card w-100 shadow p-3 mb-5  rounded">
-                <div class="card-header bg-white text-center">
-                    <h1>Relatório de vendas</h1>
+                <div class="card-header shadow p-3 mb-5 bg-info  text-center w-100">
+                    <h1 class="h1 text-white lead">Relatório de vendas</h1>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
+                <div class="card-body col-md-12">
+           
                             <form action="">
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-3">
                                         <label for="periodoFixo">Periodo</label>
                                         <select name="periofoFixo" id="periofoFixo" class="custom-select">
                                             <option value="0">ultimas 24 horas</option>
@@ -33,7 +32,7 @@
                                         </select>
                                     </div> -->
 
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-3">
                                         <label for="vendedor">Por vendedor</label>
                                         <select name="venvedor" id="venvedor" class="custom-select">
                                             <option value="0" selected>Selecione</option>
@@ -42,7 +41,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-3">
                                         <label for="produto">Por produto</label>
                                         <select name="produto" id="produto" class="custom-select">
                                             <option value="0" selected>Selecione</option>
@@ -51,7 +50,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-3">
                                         <label for="produto">Por Cliente</label>
                                         <select name="cliente" id="cliente" class="custom-select">
                                             <option value="0" selected>Selecione</option>
@@ -82,8 +81,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+  
 
 @stop
 @yield('js')

@@ -5,8 +5,8 @@
     <div class="row h-100 " style="min-height:100vh">
         <div class="col-12   d-flex justify-content-center align-items-center">
             <div class="card w-100 shadow p-3 mb-5  rounded">
-                <div class="card-header bg-white text-center">
-                    <h1>{{$data['title']}}</h1>
+                <div class="card-header shadow p-3 mb-5 bg-info  text-center w-100">
+                    <h1 class="h2 text-white">{{$data['title']}}</h1>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{$data['url']}}" class="formulario  w-100">
@@ -15,7 +15,7 @@
                         @endif
                         @csrf
                         <p class="feedback-message alert"></p>
-                        <input type="hidden" class="hidden" value="{{isset($usuario)?$usuario->id:'0'}}">
+                        <input type="hidden" class="hidden" value="{{isset($usuario)?$usuario->user->id:'0'}}">
 
                         <div class="form-group row">
                             <label for="nome" class="col-md-4 col-form-label text-md-right">Nome</label>
@@ -91,11 +91,15 @@
     })
 
     function validaCampos() {
+        var senha=0
+        var cSenha=0
         const hidden = $('.hidden').val()
         var nome = $('.nome').val().trim();
         var email = $('.email').val().trim();
-        var senha = $('.senha').val().trim();
-        var cSenha = $('.cSenha').val().trim();
+        if (hidden == 0) {
+            senha = $('.senha').val().trim();
+            cSenha = $('.cSenha').val().trim();
+        }
         var nivel = $('.nivel').val().trim();
         var validaEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
         var feedback = "";
@@ -133,18 +137,19 @@
             $('.feedback-message').addClass('alert-warning')
             $('.feedback-message').fadeIn();
         } else {
-            verificaEmail()
+            verificaEmail(hidden)
         }
 
     }
 
-    function verificaEmail() {
+    function verificaEmail(hidden) {
         var email = $('.email').val();
         $.ajax({
             url: '/buscaEmail',
             type: "POST",
             data: {
                 email: email,
+                usuario: hidden,
                 '_token': $('input[name=_token]').val(),
 
             },

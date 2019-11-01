@@ -3,13 +3,13 @@
 @section('body')
 <div class="card shadow p-3 mb-5 rounded">
 
-    <div class="card-header bg-info">
-        <h3>Venda {{ $venda->id }} </h3>
+<div class="card-header shadow p-3 mb-5 bg-info  text-center w-100">
+                    <h1 class="h2 text-white">Venda {{$venda->id}}</h1>
     </div>
     <div class="card-body">
         <div class="card">
-            <div class="card-header bg-info">
-                <h5>Dados Da compra</h5>
+        <div class="card-header shadow p-3 mb-5 bg-info  text-center w-100">
+                    <h1 class="h2 text-white">Informações</h1>
             </div>
             <div class="card-body shadow p-3 mb-5 rounded">
                 <div class="form-row">
@@ -45,9 +45,9 @@
                 </div>
             </div>
         </div>
-        <div class="card-header text-center bg-info">
-            <h5> Produtos </h5>
-        </div>
+        <div class="card-header shadow p-3 mb-5 bg-info  text-center w-100">
+                    <h2 class="h2 text-white">Lista de  produtos</h1>
+                </div>
 
         <div class="form-row adicionarProduto shadow p-3 mb-5 rounded">
             @foreach($venda->produtos as $key => $produto)

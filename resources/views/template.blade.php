@@ -27,7 +27,7 @@ $menu = [
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    
+
 
     <link href="{{ asset('css/template.css') }}" rel="stylesheet">
 
@@ -41,7 +41,7 @@ $menu = [
         <nav id="sidebar" class="sidebar-wrapper" style="../public/imgs/bgnav1.jpg">
             <div class="sidebar-content">
                 <div class="sidebar-brand">
-                    <a href="#">pro sidebar</a>
+                    <a href="#" class="lead">Easy CRM</a>
                     <div id="close-sidebar">
                         <i class="fas fa-times"></i>
                     </div>
@@ -53,7 +53,7 @@ $menu = [
                     <div class="user-info">
                         <span class="user-name">{{Auth::user()->name}}
                         </span>
-                        <span class="user-role">Administrator</span>
+                        <span class="user-role">{{Auth::user()->usuario->nivel->nome}}</span>
                         <span class="user-status">
                             <i class="fa fa-circle"></i>
                             <span>Online</span>
@@ -61,7 +61,7 @@ $menu = [
                     </div>
                 </div>
                 <!-- sidebar-header  -->
-             
+
                 <!-- sidebar-search  -->
                 <div class="sidebar-menu">
                     <ul>
@@ -71,14 +71,14 @@ $menu = [
                         @foreach($menu as $item)
                         <li class="sidebar-dropdown">
                             <a href="{{$item['route']}}">
-                               <i class="{{$item['icon']}}"></i>
+                                <i class="{{$item['icon']}}"></i>
 
                                 <span> {{$item['tool']}}</span>
                             </a>
                         </li>
                         @endforeach
                         <li class="header-menu">
-                            <span>Extra</span>
+                            <span class=>Mais</span>
                         </li>
                         <li>
                             <a href="#">
@@ -122,7 +122,7 @@ $menu = [
                     <i class="fa fa-power-off"> </i>
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
+                    @csrf
                 </form>
 
             </div>
@@ -159,24 +159,26 @@ $menu = [
                 <div class="container-fluid">
 
 
-              
+
                     <main class="page-content d-flex-justify-content-center">
-                    
+
                         @yield('body')
-                       
+
 
                     </main>
+
                     <!-- page-content" -->
                 </div>
             </div>
         </div>
     </div>
+
     <!-- page-wrapper -->
     <script type="text/javascript" src="{{asset('js/sweetalerts.min.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  
+
 
 </body>
 <script>

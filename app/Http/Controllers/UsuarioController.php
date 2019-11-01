@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Usuario,User,Nivel};
+use App\{Usuario, User, Nivel};
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -17,9 +17,10 @@ class UsuarioController extends Controller
     public function index()
     {
         //
-        $flag=1;
+        $flag = 1;
         $usuarios = Usuario::paginate(10);
-        return view('usuario.index', compact('usuarios','flag'));
+        $data = ['title'=> 'Lista de usuários'];
+        return view('usuario.index', compact('usuarios', 'flag','data'));
     }
 
     /**
@@ -32,7 +33,7 @@ class UsuarioController extends Controller
         $data = [
             'url' => url('usuario'),
             'niveis' => Nivel::all(),
-            'title'=>'Cadastro de usuários'
+            'title' => 'Cadastro de usuários'
         ];
         //  dd($usuario);
         return view('usuario.form', compact('data'));
@@ -63,7 +64,6 @@ class UsuarioController extends Controller
             'nivel_id' => $request->nivel_id,
         ]);
         return redirect('/usuario')->with('success', 'Usuário Criado com sucesso');
-
     }
 
     /**
@@ -86,12 +86,13 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         //
-
+        $usuario = Usuario::findOrFail($id);
         $data = [
             'url' => url('usuario/' . $id),
             'niveis' => Nivel::all(),
+            'title' => 'Editar Usuário ' . $usuario->id
         ];
-        $usuario = Usuario::findOrFail($id);
+
         //  dd($usuario);
         return view('usuario.form', compact('usuario', 'data'));
     }
@@ -137,19 +138,27 @@ class UsuarioController extends Controller
         return redirect('/usuario')->with('success', 'Usuário Removido com sucesso');
         //
     }
-    public function inativos(){
+    public function inativos()
+    {
         $flag = 0;
         $usuariosInativos = Usuario::onlyTrashed()->get();
-        return view('usuario.index',compact('flag','usuariosInativos'));
-       
+        $data= ['title'=>'Usuários Inativos'];
+        return view('usuario.index', compact('flag', 'usuariosInativos','data'));
     }
-    public function restore($id){
+    public function restore($id)
+    {
         $usuario = Usuario::onlyTrashed()->findOrFail($id);
         $usuario->restore();
-        return back()->with('success','Usuário Restaurado com sucesso');
+        return back()->with('success', 'Usuário Restaurado com sucesso');
     }
-    public function buscaEmail(Request $request){
-      $totalEmail = User::where('email', $request->email)->count();
-      return $totalEmail;
+    public function buscaEmail(Request $request)
+    {
+        if ($request->usuario != 0)
+            $totalEmail = User::where('email', $request->email)->where('id')->count();
+            else 
+            $totalEmail = User::where('email', $request->email)->where('id','<>',$request->usuario)->where('id')->count();
+           
+
+        return $totalEmail;
     }
 }

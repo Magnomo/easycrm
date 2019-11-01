@@ -5,8 +5,8 @@
     <div class="row h-100 " style="min-height:100vh">
         <div class="col-12   d-flex justify-content-center align-items-center">
             <div class="card w-100 shadow p-3 mb-5  rounded">
-                <div class="card-header bg-white text-center">
-                    <h1>{{$data['title']}}</h1>
+                <div class="card-header shadow p-3 mb-5 bg-info  text-center w-100">
+                    <h1 class="h2 text-white">{{$data['title']}}</h1>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ $data['url'] }}">
