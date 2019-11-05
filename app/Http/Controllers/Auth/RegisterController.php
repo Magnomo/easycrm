@@ -75,7 +75,8 @@ class RegisterController extends Controller
              $usuario->Create([
                 'nome' => $user->name,
                
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'nivel_id'=>1,
             ]);
             return $user;
         
