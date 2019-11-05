@@ -19,6 +19,7 @@ class CreatePagamentosTable extends Migration
             $table->double('valor',7,2);
             $table->date('data_pagamento')->nullable();
             $table->date('data_vencimento')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
