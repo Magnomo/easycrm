@@ -78,11 +78,95 @@
                             </form>
                         </div>
                     </div>
+
+                </div>
+                
+                <div class="col-12   d-flex justify-content-center align-items-top">
+                    <div class="card w-100 shadow p-3 mb-5  rounded">
+                        <div class="card-header shadow p-3 mb-5 bg-info  text-center w-100">
+                            <h1 class="h1 text-white lead">Relatório de vendas</h1>
+                        </div>
+                        <div class="card-body col-md-12">
+                            <div class="container h-100">
+                                <div class="d-flex justify-content-left h-100">
+                                    <div class="searchbar bg-info">
+                                        <input class="search_input"  id="myInput" type="text" name="" placeholder="Search...">
+                                        <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                           
+                        
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
   
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    .searchbar {
+        margin-bottom: 30px;
+        margin-top: auto;
+        height: 60px;
+        
+ 
+
+        border-radius:30px;
+        padding: 10px;
+    }
+
+    .search_input {
+        color: white;
+        border: 0;
+        outline: 0;
+        background: none;
+        width: 0;
+        caret-color: transparent;
+        line-height: 40px;
+        transition: width 0.4s linear;
+    }
+
+    .searchbar:hover>.search_input {
+        padding: 0 10px;
+        width: 450px;
+        caret-color: red;
+        transition: width 0.4s linear;
+    }
+
+    .searchbar:hover>.search_icon {
+        background: white;
+        color: #e74c3c;
+    }
+
+    .search_icon {
+        height: 40px;
+        width: 40px;
+        float: right;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        color: white;
+    }
+    
+</style>
 @stop
 @yield('js')
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
@@ -95,6 +179,12 @@
             else
             $('.data_intervalo').fadeOut('slow')
             
+        });
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
         });
     });
 </script>
