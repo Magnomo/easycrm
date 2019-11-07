@@ -40,7 +40,7 @@
                         <tbody>
                             @foreach($vendas as $venda)
                             <tr>
-                                <td>{{isset($venda->cliente)?$venda->cliente->nome:''}}</td>
+                                <td>{{isset($venda->cliente)?$venda->cliente->nome:'Desconhecido'}}</td>
                                 <td>{{$venda->created_at}}</td>
                                 <td>{{$venda->formaPagamento()}}</td>
                                 <td>{{$venda->numero_parcelas}}</td>

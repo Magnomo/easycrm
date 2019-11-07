@@ -1,11 +1,11 @@
 @extends('template')
 @section('title',$data['title'])
 @section('body')
-<div class="container">
-    <div class="row h-100 " style="min-height:100vh">
-        <div class="col-12   d-flex justify-content-center align-items-center">
+<div class="container-fluid">
+    <div class="row h-100 w-100 " style="min-height:100vh">
+        <div class="col-12  w-100 d-flex justify-content-center align-items-center">
             <div class="card">
-                <div class="card-header shadow p-3 mb-5 bg-info  text-center w-100">
+                <div class="card-header shadow p-3 mb-5 bg-info  text-center ">
                     <h1 class="h2 text-white">{{$data['title']}}</h1>
                 </div>
                 <div class="card-body">

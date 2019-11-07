@@ -113,7 +113,7 @@
         })
         $('.tipo_pagamento').change(function() {
 
-            if ($(this).val() != 2 && $(this).val() != 0) {
+            if ($(this).val() != 2 && $(this).val() != 0  && $(this).val() != 3) {
                 $(this).parent().removeClass('col-md-12')
                 $(this).parent().addClass('col-md-6')
                 $('.parcelas').show('slow')

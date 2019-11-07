@@ -1,8 +1,7 @@
 @extends('template')
 @section('body')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0-rc.1/Chart.min.js" integrity="sha256-qJdfkTrvMTvYJwkeb1z9a+rOErkiTyqpDz5vi7lZ7MQ=" crossorigin="anonymous"></script>
-
-    <div class=" container" >
+    <div class=" container-fluid" >
         <div class="col-12   d-flex justify-content-center align-items-top">
             <div class="card w-100 shadow p-3 mb-5  rounded">
                 <div class="card-header shadow p-3 mb-5 bg-info  text-center w-100">
@@ -97,23 +96,22 @@
                             </tr>
                         </thead>
                         <tbody  id="myTable">
-                     
+
                              @if(count($data['vendas'])>0)
                                     @foreach($data['vendas'] as $key => $venda)
                             <tr>
-                            
-                               
+
                                     <td>{{$venda->id}}</td>
                                     <td>{{$venda->created_at}}</td>
-                                    <td>{{isset($venda->cliente)?$venda->cliente->nome:''}}</td>
+                                    <td>{{isset($venda->cliente)?$venda->cliente->nome:'Desconhecido'}}</td>
                                     <td>{{$venda->usuario->nome}}</td>
                                     <td>{{$venda->formaPagamento()}}</td>
                                     <td>{{$venda->status}}</td>
-                                 
-                            </tr>   
+
+                            </tr>
                             @endforeach
-                                    
-                                    @endif                        
+
+                                    @endif
                         </tbody>
                     </table>
 
@@ -137,6 +135,10 @@
                         <div class="card-header w-100 text-center">Total por cliente</div>
                         <canvas id="vendaVendedor">
                         </canvas>
+                        <div class="card-footer">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br>
+                            <button class="btn btn-info btn-md" style="margin:10px 0  0 90px">Mais</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6  h-100">
@@ -144,6 +146,10 @@
                         <div class="card-header w-100 text-center"> Total por Cliente</div>
                         <canvas id="vendaDia">
                         </canvas>
+                        <div class="card-footer">
+                           <p> Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p> <br>
+                            <button class="btn btn-info btn-md" style="margin:10px 0  0 90px">Mais</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -153,6 +159,16 @@
                         <div class="card-header w-100 text-center"> Total por Cliente</div>
                         <canvas id="vendaLinha">
                         </canvas>
+                        <div class="card-footer">
+                      <div class="d-flex justify-content-center flex-column ">
+                      <div class= "p-2 bd-highlight"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio recusandae et quibusdam laudantium porro. Reiciendis, sed. Voluptate, vitae. Amet hic harum suscipit distinctio deserunt temporibus totam quis omnis, vitae eum!</div>
+                        <div class="p-2 bd-highlight">
+                            <button class="btn btn-info btn-md" style="margin:10px 0  0 90px">Mais</button>
+                        </div>
+
+                      </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -254,7 +270,7 @@
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.9)',
                             'rgba(54, 162, 235, 0.9)',
-                            
+
                         ],
                         borderColor: [
                             'rgba(255, 99, 132, 0.9)',
@@ -278,12 +294,12 @@
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.9)',
                             'rgba(54, 162, 235, 0.9)',
-                          
+
                         ],
                         borderColor: [
                             'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',
-                           
+
                         ],
                         borderWidth: 1
                     }]
@@ -309,16 +325,16 @@
                         data: [10, 5, 15, 25,20,17,19,23],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.9)',
-                          
+
                         ],
                         borderColor: [
                             'rgba(255, 99, 132, 1)',
-                           
+
                         ],
                     }],
                     labels: ['January', 'February', 'March', 'April', 'May','June','July']
                 },
-       
+
             });
         }
     });
