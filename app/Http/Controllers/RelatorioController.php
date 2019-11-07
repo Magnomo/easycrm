@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Usuario, Produto, Categoria, Cliente};
+use App\{Usuario, Produto, Categoria, Cliente,Venda};
 
 class RelatorioController extends Controller
 {
@@ -17,7 +17,8 @@ class RelatorioController extends Controller
         $data = [
             'usuarios'=> Usuario::all(),
             'produtos' => Produto::all(),
-            'clientes'=> Cliente::all()
+            'clientes'=> Cliente::all(),
+            'vendas'=> Venda::all(),
             
         ];
         return view('relatorios.venda.index', compact('data'));

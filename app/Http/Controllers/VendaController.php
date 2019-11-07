@@ -99,6 +99,7 @@ class VendaController extends Controller
                             $data =  mktime(0, 0, 0, date("m") + $i, date("d"),  date("Y"));
                             $data = date('Y-m-d', $data);
                             $pag = new Pagamento;
+                            $venda->status = "Em Aberto";
                             $pag->data_vencimento = $data;
                             $pag->valor = $pagamento->valor;
                             $pag->venda()->associate($venda)->save();

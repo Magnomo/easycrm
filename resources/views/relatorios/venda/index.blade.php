@@ -60,12 +60,12 @@
                                 </select>
                             </div>
                             <div class="col-md-12 form-row data_intervalo">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                     <label for="dt_inicio"> Data inicial</label>
                                     <input type="date" id="dt_inicio" name="dt_inicio" class="form-control">
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                     <label for="dt_inicio"> Data Final</label>
                                     <input type="date" id="dt_final" name="dt_final" class="form-control">
                                 </div>
@@ -78,7 +78,7 @@
                     </form>
                 </div>
                 <div class="card-body col-md-12">
-                
+
                     <div class="d-flex justify-content-left ">
                         <div class="searchbar bg-info">
                             <input class="search_input"  id="myInput" type="text" name="" placeholder="Search...">
@@ -96,31 +96,24 @@
                             <th scope="col">Status</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody  id="myTable">
+                     
+                             @if(count($data['vendas'])>0)
+                                    @foreach($data['vendas'] as $key => $venda)
                             <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            <td>@fat</td>
-                            <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            <td>@twitter</td>
-                            <td>@twitter</td>
-                            </tr>
+                            
+                               
+                                    <td>{{$venda->id}}</td>
+                                    <td>{{$venda->created_at}}</td>
+                                    <td>{{isset($venda->cliente)?$venda->cliente->nome:''}}</td>
+                                    <td>{{$venda->usuario->nome}}</td>
+                                    <td>{{$venda->formaPagamento()}}</td>
+                                    <td>{{$venda->status}}</td>
+                                 
+                            </tr>   
+                            @endforeach
+                                    
+                                    @endif                        
                         </tbody>
                     </table>
 
@@ -137,25 +130,36 @@
             <h1 class="h1 text-white lead">Relatório de vendas</h1>
         </div>
         <div class="card-body h-100">
+            <div class="card-header bg-secondary text-white text-center">Por Vendedor</div>
             <div class="row">
                 <div class="col-md-6  h-100">
-                <div class="card-body border">
+                    <div class="card-body border">
+                        <div class="card-header w-100 text-center">Total por cliente</div>
                         <canvas id="vendaVendedor">
                         </canvas>
                     </div>
                 </div>
                 <div class="col-md-6  h-100">
                     <div class="card-body border">
+                        <div class="card-header w-100 text-center"> Total por Cliente</div>
                         <canvas id="vendaDia">
                         </canvas>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-body border">
+                        <div class="card-header w-100 text-center"> Total por Cliente</div>
+                        <canvas id="vendaLinha">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
         </div>
-     
     </div>
 </div>
-    
+
 <style>
     table {
         font-family: arial, sans-serif;
@@ -200,12 +204,10 @@
         caret-color: red;
         transition: width 0.4s linear;
     }
-
     .searchbar:hover>.search_icon {
         background: white;
         color: #e74c3c;
     }
-
     .search_icon {
         height: 40px;
         width: 40px;
@@ -216,7 +218,6 @@
         border-radius: 50%;
         color: white;
     }
-
 </style>
 @stop
 @yield('js')
@@ -225,6 +226,7 @@
     $(document).ready(function() {
         barChart()
         pieChart()
+        lineChart()
 
         $('.data_intervalo').hide();
         $('#periofoFixo').change(function() {
@@ -234,27 +236,29 @@
             $('.data_intervalo').fadeOut('slow')
 
         });
+        $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
         function pieChart() {
             var ctx = document.getElementById('vendaDia');
             var myPieChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ['Produto 1', 'Produto 2', 'Produto 3', 'Produto 4'],
+                    labels: ['Diego', 'Denise'],
                     datasets: [{
-                        label: 'receita mes',
-                        data: [10, 12, 14, 20],
+                        label: ' Ultimos 6 meses',
+                        data: [10, 12],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.9)',
                             'rgba(54, 162, 235, 0.9)',
-                            'rgba(255, 206, 86, 0.9)',
-                            'rgba(75, 192, 192, 0.9)',
+                            
                         ],
                         borderColor: [
                             'rgba(255, 99, 132, 0.9)',
                             'rgba(54, 162, 235, 0.9)',
-                            'rgba(255, 206, 86, 0.9)',
-                            'rgba(75, 192, 192, 0.9)',
-
                         ],
                         borderWidth: 1
                     }]
@@ -267,25 +271,19 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                    labels: ['Diego', 'Denise'],
                     datasets: [{
                         label: ' Ultimos 6 meses',
-                        data: [12, 19, 3, 5, 2, 3],
+                        data: [12, 19],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.9)',
                             'rgba(54, 162, 235, 0.9)',
-                            'rgba(255, 206, 86, 0.9)',
-                            'rgba(75, 192, 192, 0.9)',
-                            'rgba(153, 102, 255, 0.9)',
-                            'rgba(255, 159, 64, 0.9)'
+                          
                         ],
                         borderColor: [
                             'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
+                           
                         ],
                         borderWidth: 1
                     }]
@@ -300,6 +298,28 @@
                     }
                 }
             });
-        } 
+        }
+        function lineChart() {
+            var ctx = document.getElementById('vendaLinha');
+            var mixedChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Grafico de vendas',
+                        data: [10, 5, 15, 25,20,17,19,23],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.9)',
+                          
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                           
+                        ],
+                    }],
+                    labels: ['January', 'February', 'March', 'April', 'May','June','July']
+                },
+       
+            });
+        }
     });
 </script>
