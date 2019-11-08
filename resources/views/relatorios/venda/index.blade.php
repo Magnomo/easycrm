@@ -129,52 +129,45 @@
         </div>
         <div class="card-body h-100">
             <div class="card-header bg-secondary text-white text-center">Por Vendedor</div>
-            <div class="row">
-                <div class="col-md-6  h-100">
-                    <div class="card-body border">
-                        <div class="card-header w-100 text-center">Total por cliente</div>
-                        <canvas id="vendaVendedor">
-                        </canvas>
+                <div class="row">
+                    <div class="col-md-4  h-100">
+                        <div class="card-body border">
+                            <div class="card-header w-100 text-center">Total por cliente</div>
+                            <canvas id="vendaVendedor">
+                            </canvas>
                         <div class="card-footer">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br>
                             <button class="btn btn-info btn-md" style="margin:10px 0  0 90px">Mais</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6  h-100">
-                    <div class="card-body border">
-                        <div class="card-header w-100 text-center"> Total por Cliente</div>
-                        <canvas id="vendaDia">
-                        </canvas>
-                        <div class="card-footer">
-                           <p> Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p> <br>
-                            <button class="btn btn-info btn-md" style="margin:10px 0  0 90px">Mais</button>
+                    <div class="col-md-4  h-100">
+                        <div class="card-body border">
+                            <div class="card-header w-100 text-center"> Total por Cliente</div>
+                                <canvas id="vendaDia">
+                                </canvas>
+                            <div class="card-footer">
+                                <p> Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p> <br>
+                                <button class="btn btn-info btn-md" style="margin:10px 0  0 90px">Mais</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card-body border">
-                        <div class="card-header w-100 text-center"> Total por Cliente</div>
-                        <canvas id="vendaLinha">
-                        </canvas>
-                        <div class="card-footer">
-                      <div class="d-flex justify-content-center flex-column ">
-                      <div class= "p-2 bd-highlight"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio recusandae et quibusdam laudantium porro. Reiciendis, sed. Voluptate, vitae. Amet hic harum suscipit distinctio deserunt temporibus totam quis omnis, vitae eum!</div>
-                        <div class="p-2 bd-highlight">
-                            <button class="btn btn-info btn-md" style="margin:10px 0  0 90px">Mais</button>
-                        </div>
-
-                      </div>
-
+                    <div class="col-md-4  h-100">
+                        <div class="card-body border">
+                            <div class="card-header w-100 text-center"> Total por Cliente</div>
+                                <canvas id="vendaLinha">
+                                </canvas>
+                            <div class="card-footer">
+                                <p> Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p> <br>
+                                <button class="btn btn-info btn-md" style="margin:10px 0  0 90px">Mais</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>          
     </div>
-</div>
+</div>          
 
 <style>
     table {
