@@ -1,75 +1,77 @@
 @extends('template')
 @section('title',' Titulo')
 @section('body')
-<div class="container h-100">
-    <div class="d-flex justify-content-center h-100">
-        <div class="searchbar">
-            <input class="search_input" type="text" name="" placeholder="Search...">
-            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-        </div>
-    </div>
-</div>
+
 <div class="row">
-   
+
     <!-- -->
-
-    <div class="col-lg-4 col-md-4 shadow p-3 mb-5 rounded">
+    <div class="col-12">
         <div class="card">
+            <div class="card-header bg-info text-white h1 text-center">Dashboard</div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-5 col-sm-12 col-md-5">
-                        <img src="{!! asset('imgs/venda-icon.jpg') !!}" alt="" height="72px" class="image image-responsive">
+                    <div class="col-lg-4 col-md-4 shadow p-3 mb-5 rounded">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-5 col-sm-12 col-md-5">
+                                        <img src="{!! asset('imgs/venda-icon.jpg') !!}" alt="" height="72px" class="image image-responsive">
 
+                                    </div>
+                                    <div class="col-lg-7 col-md-5 col-sm-12">
+                                        <h3 class="card-title">Vendas</h3>
+                                        <p class="card-text"> Relatório de vendas </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white ">
+                                <p class="text-center"> <a href="{{url('relatorio/vendas')}}"> visualizar</a> </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-7 col-md-5 col-sm-12">
-                    <h3 class="card-title">Vendas</h3>
-                        <p class="card-text"> Relatório de vendas </p>
-                       
+                    <div class="col-lg-4 col-md-4 shadow p-3 mb-5 rounded">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-5 col-sm-12 col-md-5">
+                                        <img src="{!! asset('imgs/estoque-icon.png') !!}" alt="" height="72px" class="image image-responsive">
+
+                                    </div>
+                                    <div class="col-lg-7 col-md-5 col-sm-12">
+                                        <h3 class="card-title">Estoque</h3>
+                                        <p class="card-text"> Relatório de estoque</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white  ">
+                                <p class="text-center"><a href="#">visualizar</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 shadow p-3 mb-5 rounded">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-5 col-sm-12 col-md-5">
+                                        <img src="{!! asset('imgs/client-icon.png') !!}" alt="" height="72px" class="image image-responsive">
+
+                                    </div>
+                                    <div class="col-lg-7 col-md-5 col-sm-12">
+
+                                        <h3 class="card-title">Clientes</h3>
+                                        <p class="card-text">relatório de clientes</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white ">
+                                <p class="text-center"><a href="#"> visualizar</a></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer bg-white ">
-                <p class="text-center"> <a href="{{url('relatorio/vendas')}}"> visualizar</a>  </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-4 shadow p-3 mb-5 rounded">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-5 col-sm-12 col-md-5">
-                        <img src="{!! asset('imgs/estoque-icon.png') !!}" alt="" height="72px" class="image image-responsive">
 
-                    </div>
-                    <div class="col-lg-7 col-md-5 col-sm-12">
-                    <h3 class="card-title">Estoque</h3>
-                    <p class="card-text"> Relatório de estoque</p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer bg-white  ">
-                <p class="text-center"><a href="#">visualizar</a></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-4 shadow p-3 mb-5 rounded">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-5 col-sm-12 col-md-5">
-                        <img src="{!! asset('imgs/client-icon.png') !!}" alt="" height="72px" class="image image-responsive">
-
-                    </div>
-                    <div class="col-lg-7 col-md-5 col-sm-12">
-                        
-                        <h3 class="card-title">Clientes</h3>
-                        <p class="card-text">relatório de clientes</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer bg-white ">
-                <p class="text-center"><a href="#" > visualizar</a></p>
             </div>
         </div>
     </div>
@@ -203,7 +205,7 @@
         margin-bottom: auto;
         margin-top: auto;
         height: 60px;
-        
+
         background: linear-gradient(0deg, #0940af, 30%, #010e15 70%);
 
         border-radius: 30px;

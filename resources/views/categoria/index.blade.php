@@ -24,8 +24,10 @@
                                 </a>
                             </div>
                             <tr>
-                                <th scope="col">ID</th>
+                              
                                 <th scope="col">Nome</th>
+                                <th scope="col">Total de itens</th>
+
                                 <th>Editar</th>
                                 <th>Remover</th>
 
@@ -34,8 +36,9 @@
                         <tbody>
                             @foreach($categorias as $categoria)
                             <tr>
-                                <td>{{$categoria->id}}</td>
+                         
                                 <td>{{$categoria->nome}}</td>
+                                <td>{{count($categoria->produtos)}}</td>
 
 
                                 <td>
@@ -78,7 +81,7 @@
 
                             </div>
                             <tr>
-                                <th scope="col">ID</th>
+                               
                                 <th scope="col">Nome</th>
                                 <th scope="col">Restaurar</th>
                             </tr>

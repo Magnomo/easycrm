@@ -2,9 +2,11 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="{{ asset('css/register.css') }}" rel="stylesheet">
 <!------ Include the above in your HEAD tag ---------->
 
-<body class="bg-secondary">
+<body class="">
+
 
     <nav class="navbar navbar-expand-lg navbar-info bg-light shadow p-3 mb-3 border rounded">
         <a class="navbar-brand" href="{{url('/')}}"> <img class="logo" src="{{asset('imgs/logo.png')}}" height="60"> </a>
@@ -114,7 +116,7 @@
         </div>
     </div> -->
 
-        <div class="card bg-light shadow p-3 mb-5 rounded">
+        <div class="card bg-info shadow p-3 mb-5 rounded">
             <article class="card-body mx-auto col-md-6">
                 <h4 class="card-title mt-3 text-center">Create Account</h4>
                 <p class="text-center">Get started with your free account</p>
@@ -176,56 +178,23 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary"> Create Account </button>
                     </div> <!-- form-group// -->
-                    <p class="text-center">Have an account? <a href="{{url('/login')}}">Log In</a> </p>
+                    <p class="text-center text-white">Have an account? <a href="{{url('/login')}}" class="text-white" style="text-decoration:underline">Log In</a> </p>
                 </form>
             </article>
         </div> <!-- card.// -->
     </div>
-    <article class="bg-dark" style="margin-top:30px;">
+    <article class="bg-info">
         <div class="card-body text-center">
 
             <p class="   text-white">Desenvolvido por Diego Magno - IFSP - Caraguatatuba </p> <br>
 
         </div>
-        <br><br>
     </article>
 
 </body>
 <style>
-    .divider-text {
-        position: relative;
-        text-align: center;
-        margin-top: 15px;
-        margin-bottom: 15px;
-    }
-
-    .divider-text span {
-        padding: 7px;
-        font-size: 12px;
-        position: relative;
-        z-index: 2;
-    }
-
-    .divider-text:after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        border-bottom: 1px solid #ddd;
-        top: 55%;
-        left: 0;
-        z-index: 1;
-    }
-
-    .btn-facebook {
-        background-color: #405D9D;
-        color: #fff;
-    }
-
-    .btn-twitter {
-        background-color: #42AEEC;
-        color: #fff;
-    }
 
 
-    }
+
+
 </style>

@@ -1,7 +1,7 @@
 @extends('template')
 @section('title',$data['title'])
 @section('body')
-
+<link href="{{ asset('css/venda/venda.css') }}" rel="stylesheet">
 <div class="container">
     <div class="row h-100 " style="min-height:100vh">
         <div class="col-12  ">
@@ -10,19 +10,26 @@
                     <h1 class="h1 text-white lead">{{$data['title']}}</h1>
                 </div>
                 <div class="card-body w-100 ">
+                    <div class="col-lg-12 col-md-12 text-right mb-4">
+                        <a class="btn btn-success btn-sm" href="{{url('venda/create')}}">
+                            <i class="material-icons" style="vertical-align:middle; font-size:25px;">note_add</i>Adicionar
+                        </a>
+                        <a class="btn btn-danger btn-sm" href="{{url('venda/inativos')}}">
+                            <i class="material-icons" style="vertical-align:middle; font-size:25px;">delete</i>Inativos
+                        </a>
+                    </div>
+                    <div class="d-flex justify-content-center ">
+                        <div class="searchbar bg-info">
+                            <input class="search_input" id="myInput" type="text" name="" placeholder="Search...">
+                            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
                     @if($flag==1)
                     <table class="table text-center  ">
 
                         <thead class="">
 
-                            <div class="col-lg-12 col-md-12 text-right mb-4">
-                                <a class="btn btn-success btn-sm" href="{{url('venda/create')}}">
-                                    <i class="material-icons" style="vertical-align:middle; font-size:25px;">note_add</i>Adicionar
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="{{url('venda/inativos')}}">
-                                    <i class="material-icons" style="vertical-align:middle; font-size:25px;">delete</i>Inativos
-                                </a>
-                            </div>
+
                             <tr>
 
                                 <th scope="col">Cliente</th>
@@ -37,7 +44,7 @@
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="myTable">
                             @foreach($vendas as $venda)
                             <tr>
                                 <td>{{isset($venda->cliente)?$venda->cliente->nome:'Desconhecido'}}</td>
@@ -73,7 +80,7 @@
                                 </td>
                             </tr>
                             @endforeach
-                        </tbody>
+                        </tbody >
                         <tfoot>
                             <tr>
                                 <td colspan="100%" class="text-center">
@@ -105,7 +112,7 @@
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody  id="myTable">
                             @foreach($vendasInativas as $venda)
                             <tr>
                                 <td>{{isset($venda->cliente)?$venda->cliente->nome:''}}</td>
@@ -167,10 +174,16 @@
     $(document).ready(function() {
         $('.remover').click(function(e) {
             e.preventDefault()
-
         })
         $('.deleteConfirm').click(function() {
             $('.formDelete').submit();
         })
+        $("#myInput").on("keyup", function() {
+            
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
     })
 </script>

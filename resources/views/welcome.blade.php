@@ -21,7 +21,7 @@
     </div>
 </nav>
 
-<div class="jumbotron jumbotron-fluid bg-dark">
+<div class="jumbotron jumbotron-fluid bg-info">
     <div class="container text-center text-white">
         <h1 class="display-4">Easy CRM</h1>
         <p class="lead">Uma forma simples de Gerenciar seu negócio e ter o controle de suas vendas, clientes e funcionário</p>
@@ -39,13 +39,12 @@
 
 <!-- .//container -->
 
-<article class="bg-dark" style="margin-top:30px;">
+<article class="bg-info" >
     <div class="card-body text-center">
 
         <p class="   text-white">Desenvolvido por Diego Magno - IFSP - Caraguatatuba </p> <br>
 
     </div>
-    <br><br>
 </article>
 <style>
     .paralax {

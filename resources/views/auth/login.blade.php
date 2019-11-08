@@ -111,13 +111,12 @@
 
 
 	</div>
-	<article class="bg-dark" style="margin-top:30px;">
+	<article class="bg-info" >
 		<div class="card-body text-center">
 
 			<p class="   text-white">Desenvolvido por Diego Magno - IFSP - Caraguatatuba </p> <br>
 
 		</div>
-		<br><br>
 	</article>
 	<script type="text/javascript" src="{{asset('js/sweetalerts.min.js')}}"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
